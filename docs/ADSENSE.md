@@ -10,10 +10,10 @@ Ads are intentionally disabled by default and never requested in development. Co
 5. Set NEXT_PUBLIC_ADS_ENABLED and NEXT_PUBLIC_ADSENSE_CONSENT_READY to true, deploy production, verify ownership, seller entry and live placements. Never click your own ads.
 
 ## Manual placement budget
-- Home: one responsive display banner after popular visualizers and one in-article unit after editorial FAQ content.
+- Home: one responsive display banner after popular visualizers and one responsive display unit after editorial FAQ content.
 - Visualizer, game, topic, pattern, problem and cheat-sheet browsing indexes: one responsive display placement after the list (not mixed with question or game cards).
-- Individual topic, pattern and cheat-sheet lessons: one in-article placement after the lesson and an optional separate desktop-only display rail (1440px+). Mobile receives only the article unit.
-- Interview and college preparation: one in-article placement below the preparation content.
+- Individual topic and pattern lessons: one in-article placement between content sections and an optional separate desktop-only display rail (1440px+). Cheat-sheet lessons use a display unit after the sheet instead of an in-article unit. Mobile receives only one unit.
+- Interview and college preparation: one in-article placement between preparation sections (when there are multiple sections).
 - No ad units on individual game, visualizer or problem execution pages, progress, revision, settings, daily challenges, roadmap, or legal/contact pages.
 - No automatic refresh, artificial clicks, gated content, sticky units or app interstitials. Each configured slot requests once when near the viewport with a measurable width. Ads are separately labelled Advertisement and hidden completely when disabled.
 

@@ -7,8 +7,9 @@ export function isSlot(value:string){return /^\d+$/.test(value)}
 export const canShow=(placement:Placement)=>adsEnabled&&isSlot(slots[placement]);
 export const adsTxt=()=>publisherValid?'google.com, '+publisher.replace(/^ca-/,'')+', DIRECT, f08c47fec0942fa0\n':'# No advertising seller configured.\n';
 export function adPlan(section:string,detail:boolean):Placement[]{
- if(section==='home'&&!detail)return ['banner','content'];
- if(detail&&['topics','patterns','cheat-sheets'].includes(section))return ['sidebar','content'];
+ if(section==='home'&&!detail)return ['banner','feed'];
+ if(detail&&['topics','patterns'].includes(section))return ['sidebar','content'];
+ if(detail&&section==='cheat-sheets')return ['sidebar','feed'];
  if(!detail&&['visualizers','games','learn','topics','patterns','problems','cheat-sheets'].includes(section))return ['feed'];
  if(!detail&&['interview-prep','college-prep'].includes(section))return ['content'];
  return [];
