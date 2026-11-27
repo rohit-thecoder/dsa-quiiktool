@@ -1,3 +1,4 @@
+import type {MetadataRoute} from 'next';
 import {origin} from '@/lib/seo/metadata';
-import {publicEntries} from '@/lib/catalog';
-export default function sitemap(){return ['',...publicEntries.map(e=>e.href)].map(path=>({url:origin+path}));}
+import {indexableEntries} from '@/lib/catalog';
+export default function sitemap():MetadataRoute.Sitemap{return ['',...new Set(indexableEntries.map(e=>e.href))].map(path=>({url:new URL(path||'/',origin).href}));}
