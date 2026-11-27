@@ -1,6 +1,6 @@
 # QuiikTool DSA
 
-Study 16 topic groups, inspect 51 executable problems in C++, Java and Python, and play eight games with 15 levels each. This Next.js application stores progress locally.
+Explore 388 organized DSA questions (51 original configurable execution problems, 334 worked-example simulations and additional game-backed labs), and play 14 games with 15 levels each. This Next.js application stores progress locally.
 
 ## Development
 
@@ -8,4 +8,4 @@ Use Node.js 22.12+ and Bun. Run `bun install` then `bun run dev`. The verified n
 
 ## Guides
 
-[Architecture](docs/ARCHITECTURE.md) · [Product research](docs/PRODUCT_RESEARCH.md) · [Current coverage](docs/IMPLEMENTATION_STATUS.md) · [Algorithm validation](docs/ALGORITHM_VALIDATION.md) · [Vercel and domain setup](docs/DEPLOYMENT.md) · [AdSense activation](docs/ADSENSE.md)
+[Architecture](docs/ARCHITECTURE.md) · [Product research](docs/PRODUCT_RESEARCH.md) · [Current coverage](docs/IMPLEMENTATION_STATUS.md) · [Algorithm validation](docs/ALGORITHM_VALIDATION.md) · [Vercel and domain setup](docs/DEPLOYMENT.md) · [AdSense activation](docs/ADSENSE.md) · [SEO launch checklist](docs/SEO.md)
