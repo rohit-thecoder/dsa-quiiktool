@@ -3,11 +3,13 @@ import {problems} from '@/engines/algorithms';
 import {games} from '@/engines/games';
 import {sections,privateSections,type Entry} from '@/lib/seo/internalLinks';
 import {labs} from '@/data/visual-labs';
+import {workedExamples} from '@/data/worked-examples';
 export const entries:Entry[]=[
  ...Object.entries(sections).map(([slug,[title,summary]])=>({title,summary,href:'/'+slug,group:'Workspace'})),
  ...topics.map(t=>({title:t.title,summary:t.summary,href:'/topics/'+t.slug,group:'Topic',keywords:[...t.subtopics,t.slug==='stacks-and-queues'?'LIFO FIFO':''].join(' ')})),
  ...patterns.map(t=>({title:t.title,summary:t.summary,href:'/patterns/'+t.slug,group:'Pattern',keywords:t.signal})),
  ...problems.flatMap(p=>[{title:p.title,summary:p.description,href:'/problem/'+p.slug,group:'Problem',keywords:[p.topicId,...p.patternIds].join(' ')},{title:p.title+' visualizer',summary:p.description,href:'/visualizers/'+p.slug,group:'Visualizer'}]),
+ ...workedExamples.map(x=>({title:x.title+' visualizer',summary:'Step through a computed reference example.',href:'/visualizers/'+x.slug,group:'Visualizer',keywords:x.topicId})),
  ...labs.map(l=>({title:l.title+' visualizer',summary:l.summary,href:'/visualizers/'+l.slug,group:'Visualizer',keywords:l.topicId})),
  ...games.map(t=>({title:t.title,summary:t.description,href:'/games/'+t.slug,group:'Game',keywords:t.topicId+(t.slug.includes('stack')?' LIFO':'')})),
  ...cheatSheets.map(t=>({title:t.title,summary:t.summary,href:'/cheat-sheets/'+t.slug,group:'Cheat sheet'}))];
