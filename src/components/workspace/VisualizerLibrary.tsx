@@ -1,0 +1,39 @@
+'use client'
+import {useEffect,useState} from 'react'
+import {Activity,ArrowLeft,ChevronRight,Search} from 'lucide-react'
+import {studyGroups,questionSlug,existingAliases,sheetSource} from '@/data/study-groups'
+export type AvailableTrace={slug:string;title:string;topicId:string;difficulty?:string}
+export default function VisualizerLibrary({available}:{available:AvailableTrace[]}){
+ const [q,setQ]=useState(''),[topic,setTopic]=useState(''),[onlyReady,setOnlyReady]=useState(false)
+ const [returnSubtopic,setReturnSubtopic]=useState('')
+ useEffect(()=>{
+  function restore(){
+   const hash=window.location.hash.slice(1)
+   if(!hash){setTopic('');setReturnSubtopic('');return}
+   try{
+    const [t,s]=hash.split('/').map(decodeURIComponent)
+    if(studyGroups.some(g=>g.topic===t&&g.subtopic===s)){setTopic(t);setReturnSubtopic(s)}
+   }catch{/* Ignore invalid fragments. */}
+  }
+  restore()
+  window.addEventListener('hashchange',restore)
+  return()=>window.removeEventListener('hashchange',restore)
+ },[])
+ function backToAll(){
+  setQ('')
+  setTopic('')
+  setReturnSubtopic('')
+  setOnlyReady(false)
+  window.history.replaceState(window.history.state,'',window.location.pathname+window.location.search)
+  window.scrollTo({top:0,behavior:'instant'})
+ }
+ const bySlug=new Map(available.map(x=>[x.slug,x]))
+ const used=new Set<string>()
+ const groups=studyGroups.map(g=>({...g,rows:g.titles.map(title=>{const key=questionSlug(title),trace=bySlug.get(existingAliases[key]??key);if(trace)used.add(trace.slug);return {title,key,trace}})}))
+ const extras=available.filter(a=>!used.has(a.slug))
+ for(const t of [...new Set(extras.map(a=>a.topicId))]) groups.push({topic:'Additional visualizers',subtopic:t,titles:[],rows:extras.filter(a=>a.topicId===t).map(trace=>({title:trace.title,key:trace.slug,trace}))})
+ const topics=[...new Set(groups.map(g=>g.topic))]
+ const catalog=groups.filter(g=>g.topic!=='Additional visualizers').flatMap(g=>g.rows),total=new Set(catalog.map(x=>x.key)).size,covered=new Set(catalog.filter(x=>x.trace).map(x=>x.key)).size
+ const filtered=groups.map(g=>({...g,rows:g.rows.filter(r=>(!onlyReady||r.trace)&&[r.title,g.topic,g.subtopic].join(' ').toLowerCase().includes(q.trim().toLowerCase()))})).filter(g=>g.rows.length&&(!topic||topic===g.topic))
+ return <section className="study-library">{(topic||returnSubtopic||q||onlyReady)&&<nav className="visualizer-library-nav" aria-label="Visualizer navigation"><button type="button" className="visualizer-back btn" onClick={backToAll}><ArrowLeft size={18} aria-hidden="true"/> Back to all visualizers</button><span className="visualizer-location">{topic||'All visualizers'}{returnSubtopic&&<> <ChevronRight size={14} aria-hidden="true"/> {returnSubtopic}</>}</span></nav>}<div className="premium-banner"><span>VISUAL LEARNING PATH</span><h2>Master DSA, one pattern at a time.</h2><p>{covered}/{total} catalog questions covered · {available.length} total simulations</p><p>Explore topic by topic. Questions awaiting implementation are clearly marked.</p></div><div className="filters"><label className="filter-search"><Search size={18}/><input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search problems or subtopics" aria-label="Search questions"/></label><select aria-label="Select topic" value={topic} onChange={e=>{setTopic(e.target.value);setReturnSubtopic('');window.history.replaceState(window.history.state,'',window.location.pathname+window.location.search)}}><option value="">All topics</option>{topics.map(t=><option key={t}>{t}</option>)}</select><label><input type="checkbox" checked={onlyReady} onChange={e=>setOnlyReady(e.target.checked)}/> Available visualizers only</label></div>{topics.filter(t=>filtered.some(g=>g.topic===t)).map(t=>{const sub=filtered.filter(g=>g.topic===t),count=sub.reduce((a,g)=>a+g.rows.length,0),ready=sub.reduce((a,g)=>a+g.rows.filter(r=>r.trace).length,0);return <details key={t+topic+q+onlyReady+returnSubtopic} className="study-topic" open={!!topic||!!q}><summary><b>{t}</b><span>{ready}/{count} available</span></summary>{sub.map(g=><details key={g.subtopic+returnSubtopic} className="study-subtopic" open={!!q||g.subtopic===returnSubtopic}><summary>{g.subtopic}<span>{g.rows.length} questions</span></summary><div className="linklist">{g.rows.map(r=>r.trace?<a key={r.key} href={'/visualizers/'+r.trace.slug}><Activity size={18}/><span><b>{r.title}</b><small>Interactive visualizer{r.trace.difficulty?' · '+r.trace.difficulty:''}</small></span><ChevronRight size={16}/></a>:<div className="study-pending" key={r.key}><span>{r.title}</span><small>Visualizer planned</small></div>)}</div></details>)}</details>})}{!filtered.length&&<p>No matching questions. Try another search.</p>}<p className="muted">Independent practice index inspired by the <a href={sheetSource} target="_blank" rel="noreferrer">Striver A2Z roadmap ↗</a>. Not an official copy of the sheet.</p></section>
+}

@@ -1,4 +1,4 @@
 import Overview from '@/components/Overview';
 import {metadata as meta} from '@/lib/seo/metadata';
-export const metadata=meta('Visual DSA Learning Lab','Learn DSA visually. Play algorithms. Master coding interviews with interactive traces, original games and a structured problem sheet.','/');
+export const metadata=meta('DSA Visualizer, Games & Coding Interview Practice','Learn data structures and algorithms with 388 organized DSA questions, interactive visualizers, educational games, code walkthroughs and interview cheat sheets.','/');
 export default Overview;

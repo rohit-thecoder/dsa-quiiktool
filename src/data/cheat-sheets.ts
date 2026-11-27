@@ -341,3 +341,5 @@ def reachable(adj, s):
   return count;
 }`)
 ];
+
+cheatSheets.push(sheet('lower-bound-template','Lower bound template','Find the first value at least the target in sorted input.',[['Invariant','Half-open interval','Answer remains in [l,r]'],['Time','O(log n)','Space O(1)']], 'def lower(a,x):\n    l,r=0,len(a)\n    while l<r:\n        m=(l+r)//2\n        if a[m]<x: l=m+1\n        else: r=m\n    return l','int lower(const std::vector<int>& a,int x){int l=0,r=a.size();while(l<r){int m=l+(r-l)/2;if(a[m]<x)l=m+1;else r=m;}return l;}','static int lower(int[] a,int x){int l=0,r=a.length;while(l<r){int m=l+(r-l)/2;if(a[m]<x)l=m+1;else r=m;}return l;}'),sheet('union-find-template','Union-find root lookup','Find a representative using path halving.',[['Root','parent[x] = x','Initialize each node as its own root'],['Union','Attach smaller root','Update size only on surviving root']], 'def find(p,x):\n    while p[x]!=x:\n        p[x]=p[p[x]]\n        x=p[x]\n    return x','int find(std::vector<int>& p,int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}','static int find(int[] p,int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}'));

@@ -1,0 +1,11 @@
+import {describe,it,expect} from 'vitest';
+import {adPlan,isSlot} from '@/components/ads/adConfig';
+import {entries,indexableEntries,canonicalPath,relatedVisualizers} from '@/lib/catalog';
+import {studyGroups,questionSlug,existingAliases} from '@/data/study-groups';
+describe('SEO and advertising',()=>{
+ it('exposes unique canonical sitemap paths, excluding personal routes',()=>{const paths=indexableEntries.map(e=>e.href);expect(new Set(paths).size).toBe(paths.length);expect(paths).not.toContain('/progress');expect(paths).not.toContain('/settings');expect(paths).not.toContain('/revision');expect(paths).not.toContain('/problem/binary-search');expect(canonicalPath('/problem/binary-search')).toBe('/visualizers/binary-search');});
+ it('resolves every indexed catalog question to a public visualizer',()=>{const routes=new Set(indexableEntries.map(e=>e.href));const slugs=new Set(studyGroups.flatMap(g=>g.titles.map(questionSlug)));expect(slugs.size).toBe(388);for(const slug of slugs)expect(routes.has('/visualizers/'+(existingAliases[slug]??slug)),slug).toBe(true);expect(relatedVisualizers('largest-element').length).toBeGreaterThan(0);});
+ it('has unique worked-example descriptions and nonempty metadata',()=>{const v=entries.filter(e=>e.group==='Visualizer');expect(v.every(e=>e.title.length>0&&e.summary.length>0)).toBe(true);const worked=v.filter(e=>e.summary.startsWith('Learn ')&&e.summary.includes('JavaScript source code'));expect(worked.length).toBe(334);expect(new Set(worked.map(e=>e.summary)).size).toBe(worked.length);});
+ it('keeps sessions and private pages free of manual ads',()=>{for(const section of ['visualizers','games','problem'])expect(adPlan(section,true)).toEqual([]);for(const section of ['progress','revision','settings','roadmap','daily-challenge','privacy-policy','terms','contact','about','disclaimer'])expect(adPlan(section,false)).toEqual([]);});
+ it('limits manual ads and validates numeric slots',()=>{expect(adPlan('home',false)).toEqual(['banner','feed']);expect(adPlan('visualizers',false)).toEqual(['feed']);expect(adPlan('topics',true)).toEqual(['sidebar','content']);expect(adPlan('interview-prep',false)).toEqual(['content']);expect(isSlot('1234567890')).toBe(true);for(const s of ['', 'placeholder','ca-pub-123','12x'])expect(isSlot(s)).toBe(false);});
+});

@@ -1,3 +1,4 @@
+import { dependency, hashVault, bitForge, networkMerge, intervalMission, primeLab } from './expansion'
 import { dynamic } from './dynamic'
 import { maze, traversal } from './maze-tree'
 import { pointers } from './pointers'
@@ -64,6 +65,12 @@ export const games = [
     description:
       'Explore optimal routes, pay exact change and pack a valuable inventory.',
   },
+  {slug: 'dependency-dispatch', title: 'Dependency Dispatch', topicId: 'graphs', description: 'Launch modules in prerequisite order in a network of dependencies.'},
+  {slug: 'hash-vault', title: 'Hash Vault', topicId: 'arrays-and-hashing', description: 'Route incoming keys through a collision-filled hash table.'},
+  {slug: 'bit-forge', title: 'Bit Forge', topicId: 'bit-manipulation', description: 'Clear binary circuits one set bit at a time.'},
+  {slug: 'network-merge', title: 'Network Merge', topicId: 'graphs', description: 'Connect stations using disjoint sets and union by size.'},
+  {slug: 'interval-mission', title: 'Interval Mission', topicId: 'greedy-and-intervals', description: 'Schedule the maximum number of compatible missions.'},
+  {slug: 'prime-reactor', title: 'Prime Reactor', topicId: 'fundamentals', description: 'Remove composite numbers from a prime-powered reactor.'},
 ] as const
 export const levelsPerGame = 15
 const builders: Record<string, (n: number) => Level> = {
@@ -75,6 +82,12 @@ const builders: Record<string, (n: number) => Level> = {
   'sliding-window-collector': windowGame,
   'pointer-escape': pointers,
   'dynamic-programming-quest': dynamic,
+  'dependency-dispatch': dependency,
+  'hash-vault': hashVault,
+  'bit-forge': bitForge,
+  'network-merge': networkMerge,
+  'interval-mission': intervalMission,
+  'prime-reactor': primeLab,
 }
 export function makeLevel(slug: string, number: number): Level {
   if (!Object.hasOwn(builders, slug)) throw new RangeError('Unknown game.')
