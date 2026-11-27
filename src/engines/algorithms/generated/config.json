@@ -1,0 +1,553 @@
+{
+  "linear-search": {
+    "shape": "array",
+    "rules": [],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "count-occurrences": {
+    "shape": "array",
+    "rules": [],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "two-sum": {
+    "shape": "array",
+    "rules": [],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "contains-duplicate": {
+    "shape": "array",
+    "rules": [],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "maximum-subarray": {
+    "shape": "array",
+    "rules": [
+      "nonempty"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "best-time-to-buy-and-sell-stock": {
+    "shape": "array",
+    "rules": [
+      "nonnegative"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "running-sum": {
+    "shape": "array",
+    "rules": [],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "move-zeroes": {
+    "shape": "array",
+    "rules": [],
+    "pointers": [
+      "i",
+      "write"
+    ]
+  },
+  "selection-sort": {
+    "shape": "array",
+    "rules": [],
+    "pointers": [
+      "i",
+      "j",
+      "smallest"
+    ]
+  },
+  "bubble-sort": {
+    "shape": "array",
+    "rules": [],
+    "pointers": [
+      "i",
+      "j",
+      "end"
+    ]
+  },
+  "insertion-sort": {
+    "shape": "array",
+    "rules": [],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "merge-sort": {
+    "shape": "array",
+    "rules": [],
+    "pointers": [
+      "left",
+      "right",
+      "out"
+    ]
+  },
+  "valid-palindrome": {
+    "shape": "array",
+    "rules": [
+      "letters"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "first-unique-character": {
+    "shape": "array",
+    "rules": [
+      "letters"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "longest-run": {
+    "shape": "array",
+    "rules": [
+      "letters"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "two-sum-ii": {
+    "shape": "array",
+    "rules": [
+      "sorted"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "remove-duplicates-from-sorted-array": {
+    "shape": "array",
+    "rules": [
+      "sorted"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "container-with-most-water": {
+    "shape": "array",
+    "rules": [
+      "nonnegative"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "reverse-array": {
+    "shape": "array",
+    "rules": [],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "maximum-sum-subarray-of-size-k": {
+    "shape": "array",
+    "rules": [
+      "window"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "minimum-size-subarray-sum": {
+    "shape": "array",
+    "rules": [
+      "positive",
+      "positive-target"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "longest-substring-without-repeating-characters": {
+    "shape": "array",
+    "rules": [
+      "letters"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "binary-search": {
+    "shape": "array",
+    "rules": [
+      "sorted"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "search-insert-position": {
+    "shape": "array",
+    "rules": [
+      "sorted"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "first-occurrence": {
+    "shape": "array",
+    "rules": [
+      "sorted"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "last-occurrence": {
+    "shape": "array",
+    "rules": [
+      "sorted"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "integer-square-root": {
+    "shape": "array",
+    "rules": [
+      "no-negative-target"
+    ],
+    "pointers": []
+  },
+  "reverse-linked-list": {
+    "shape": "linked",
+    "rules": [],
+    "pointers": [
+      "cur",
+      "prev",
+      "nxt"
+    ]
+  },
+  "middle-of-the-linked-list": {
+    "shape": "linked",
+    "rules": [],
+    "pointers": [
+      "slow",
+      "fast"
+    ]
+  },
+  "valid-parentheses": {
+    "shape": "stack",
+    "rules": [
+      "paren"
+    ],
+    "pointers": [
+      "i"
+    ]
+  },
+  "next-greater-element": {
+    "shape": "stack",
+    "rules": [],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "daily-temperatures": {
+    "shape": "stack",
+    "rules": [],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "factorial": {
+    "shape": "stack",
+    "rules": [
+      "factorial"
+    ],
+    "pointers": []
+  },
+  "preorder-traversal": {
+    "shape": "tree",
+    "rules": [],
+    "pointers": [
+      "node"
+    ]
+  },
+  "maximum-depth-of-binary-tree": {
+    "shape": "tree",
+    "rules": [],
+    "pointers": [
+      "node"
+    ]
+  },
+  "is-max-heap": {
+    "shape": "tree",
+    "rules": [],
+    "pointers": [
+      "parent",
+      "child"
+    ]
+  },
+  "heap-sort": {
+    "shape": "tree",
+    "rules": [],
+    "pointers": [
+      "root",
+      "child"
+    ]
+  },
+  "breadth-first-search": {
+    "shape": "graph",
+    "rules": [
+      "graph"
+    ],
+    "pointers": [
+      "node",
+      "neighbor"
+    ]
+  },
+  "count-reachable-nodes": {
+    "shape": "graph",
+    "rules": [
+      "graph"
+    ],
+    "pointers": [
+      "node",
+      "neighbor"
+    ]
+  },
+  "climbing-stairs": {
+    "shape": "array",
+    "rules": [
+      "small-target"
+    ],
+    "pointers": []
+  },
+  "house-robber": {
+    "shape": "array",
+    "rules": [
+      "nonnegative"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "coin-change": {
+    "shape": "array",
+    "rules": [
+      "positive",
+      "pair-budget"
+    ],
+    "pointers": [
+      "amount"
+    ]
+  },
+  "unique-paths": {
+    "shape": "grid",
+    "rules": [
+      "bits",
+      "grid"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "minimum-path-sum": {
+    "shape": "grid",
+    "rules": [
+      "grid"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "jump-game": {
+    "shape": "array",
+    "rules": [
+      "nonempty",
+      "nonnegative"
+    ],
+    "pointers": [
+      "i",
+      "reach"
+    ]
+  },
+  "minimum-jumps": {
+    "shape": "array",
+    "rules": [
+      "nonempty",
+      "nonnegative"
+    ],
+    "pointers": [
+      "i",
+      "end",
+      "reach"
+    ]
+  },
+  "single-number": {
+    "shape": "array",
+    "rules": [
+      "odd-pairs"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "missing-number": {
+    "shape": "array",
+    "rules": [
+      "one-based"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  },
+  "number-of-1-bits": {
+    "shape": "array",
+    "rules": [
+      "no-negative-target"
+    ],
+    "pointers": []
+  },
+  "power-of-two": {
+    "shape": "array",
+    "rules": [],
+    "pointers": []
+  },
+  "counting-bits": {
+    "shape": "array",
+    "rules": [
+      "pair-budget"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "left",
+      "mid",
+      "right"
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+export default function Brand(){return <span className="brand"><svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true"><path d="M4 12 20 3l15 9-15 9z" fill="#c5b9ff"/><path d="m4 12 16 9v16L4 28z" fill="#8970fa"/><path d="m20 21 15-9v16l-15 9z" fill="#a18af8"/><path d="m13 18 7-4 8 4-8 5z" fill="#241d43"/></svg><span>QuiikTool <b>DSA</b></span></span>}

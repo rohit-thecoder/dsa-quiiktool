@@ -1,0 +1,3765 @@
+[
+  {
+    "slug": "linear-search",
+    "title": "Linear Search",
+    "topicId": "fundamentals",
+    "patternIds": [
+      "linear-scan"
+    ],
+    "difficulty": "easy",
+    "description": "Return the first index holding the target, or -1 when it is absent.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Check numbered lockers in order until the label matches.",
+    "hints": [
+      "Check numbered lockers in order until the label matches.",
+      "Read each position once, stopping at the first match.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Stopping one position early misses a match at the very end.",
+    "followUp": "Can any algorithm skip positions in an unsorted collection?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Read each position once, stopping at the first match.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int i = 0;\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    if ((values[i] == target)) {\n      return i;\n    }\n    i = (i + 1);\n  }\n  return -1;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int i = 0;\n    i = 0;\n    while ((i < values.length)) {\n      if ((values[i] == target)) {\n        return i;\n      }\n      i = (i + 1);\n    }\n    return -1;\n  }\n}",
+          "python": "def solve(values, target):\n    i = 0\n    while (i < len(values)):\n        if (values[i] == target):\n            return i\n        i = (i + 1)\n    return -1"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            8,
+            3,
+            5,
+            3
+          ],
+          "target": 3
+        },
+        "expected": 1
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 4
+        },
+        "expected": -1
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            1
+          ],
+          "target": 1
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "slug": "count-occurrences",
+    "title": "Count Occurrences",
+    "topicId": "fundamentals",
+    "patternIds": [
+      "linear-scan"
+    ],
+    "difficulty": "easy",
+    "description": "Count all positions that contain the target value.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A ticket checker makes one tally mark for each passenger on a list.",
+    "hints": [
+      "A ticket checker makes one tally mark for each passenger on a list.",
+      "Keep a count of matches in the prefix already inspected.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Finding the first match does not finish the count.",
+    "followUp": "What changes if the input is sorted?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Keep a count of matches in the prefix already inspected.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int i = 0;\n  int count = 0;\n  i = 0;\n  count = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    if ((values[i] == target)) {\n      count = (count + 1);\n    }\n    i = (i + 1);\n  }\n  return count;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int i = 0;\n    int count = 0;\n    i = 0;\n    count = 0;\n    while ((i < values.length)) {\n      if ((values[i] == target)) {\n        count = (count + 1);\n      }\n      i = (i + 1);\n    }\n    return count;\n  }\n}",
+          "python": "def solve(values, target):\n    i = 0\n    count = 0\n    while (i < len(values)):\n        if (values[i] == target):\n            count = (count + 1)\n        i = (i + 1)\n    return count"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            4,
+            2,
+            4,
+            4
+          ],
+          "target": 4
+        },
+        "expected": 3
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 3
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            1,
+            1
+          ],
+          "target": 0
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "slug": "two-sum",
+    "title": "Two Sum",
+    "topicId": "arrays-and-hashing",
+    "patternIds": [
+      "complement-lookup"
+    ],
+    "difficulty": "easy",
+    "description": "Find two distinct positions whose values add to the target. Return the pair with the smallest second index, then smallest first index. Return an empty array if no pair exists.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "At a ticket booth, remember who can provide the change you will need later.",
+    "hints": [
+      "At a ticket booth, remember who can provide the change you will need later.",
+      "As each value arrives, look up the earliest position of its complement. Store indices plus one so zero marks an unseen value.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Looking up a complement after recording the current value can reuse the same item.",
+    "followUp": "How would you return all matching index pairs?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "As each value arrives, look up the earliest position of its complement. Store indices plus one so zero marks an unseen value.",
+        "time": "O(n + U), U = 2001",
+        "space": "O(U)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  std::vector<int> seen;\n  int i = 0;\n  int need = 0;\n  seen = std::vector<int>(2001, 0);\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    need = (target - values[i]);\n    if (((need >= -1000) && (need <= 1000))) {\n      if ((seen[(need + 1000)] > 0)) {\n        return std::vector<int>{(seen[(need + 1000)] - 1), i};\n      }\n    }\n    if ((seen[(values[i] + 1000)] == 0)) {\n      seen[(values[i] + 1000)] = (i + 1);\n    }\n    i = (i + 1);\n  }\n  return std::vector<int>{};\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int[] seen = new int[0];\n    int i = 0;\n    int need = 0;\n    seen = new int[2001];\n    i = 0;\n    while ((i < values.length)) {\n      need = (target - values[i]);\n      if (((need >= -1000) && (need <= 1000))) {\n        if ((seen[(need + 1000)] > 0)) {\n          return new int[]{(seen[(need + 1000)] - 1), i};\n        }\n      }\n      if ((seen[(values[i] + 1000)] == 0)) {\n        seen[(values[i] + 1000)] = (i + 1);\n      }\n      i = (i + 1);\n    }\n    return new int[]{};\n  }\n}",
+          "python": "def solve(values, target):\n    seen = [0] * (2001)\n    i = 0\n    while (i < len(values)):\n        need = (target - values[i])\n        if ((need >= -1000) and (need <= 1000)):\n            if (seen[(need + 1000)] > 0):\n                return [(seen[(need + 1000)] - 1), i]\n        if (seen[(values[i] + 1000)] == 0):\n            seen[(values[i] + 1000)] = (i + 1)\n        i = (i + 1)\n    return []"
+        }
+      },
+      {
+        "id": "brute",
+        "title": "Enumerate earlier pairs",
+        "intuition": "For each second index, inspect earlier entries from left to right.",
+        "time": "O(n²)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  int j = 0;\n  int i = 0;\n  j = 1;\n  while ((j < static_cast<int>(values.size()))) {\n    i = 0;\n    while ((i < j)) {\n      if (((values[i] + values[j]) == target)) {\n        return std::vector<int>{i, j};\n      }\n      i = (i + 1);\n    }\n    j = (j + 1);\n  }\n  return std::vector<int>{};\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int j = 0;\n    int i = 0;\n    j = 1;\n    while ((j < values.length)) {\n      i = 0;\n      while ((i < j)) {\n        if (((values[i] + values[j]) == target)) {\n          return new int[]{i, j};\n        }\n        i = (i + 1);\n      }\n      j = (j + 1);\n    }\n    return new int[]{};\n  }\n}",
+          "python": "def solve(values, target):\n    j = 1\n    while (j < len(values)):\n        i = 0\n        while (i < j):\n            if ((values[i] + values[j]) == target):\n                return [i, j]\n            i = (i + 1)\n        j = (j + 1)\n    return []"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            4,
+            1,
+            7,
+            2
+          ],
+          "target": 9
+        },
+        "expected": [
+          2,
+          3
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            3,
+            3
+          ],
+          "target": 6
+        },
+        "expected": [
+          0,
+          1
+        ]
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [],
+          "target": 2
+        },
+        "expected": []
+      },
+      {
+        "label": "Edge case 3",
+        "input": {
+          "values": [
+            1,
+            4,
+            6,
+            9
+          ],
+          "target": 10
+        },
+        "expected": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "contains-duplicate",
+    "title": "Contains Duplicate",
+    "topicId": "arrays-and-hashing",
+    "patternIds": [
+      "frequency-counting"
+    ],
+    "difficulty": "easy",
+    "description": "Return 1 as soon as an integer occurs a second time, otherwise return 0.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Cross off a roll number on first attendance. An already crossed number signals a repeat.",
+    "hints": [
+      "Cross off a roll number on first attendance. An already crossed number signals a repeat.",
+      "Use the bounded value range to keep a presence table.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Negative numbers require an offset before indexing the table.",
+    "followUp": "What structure would support arbitrary strings?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Use the bounded value range to keep a presence table.",
+        "time": "O(n + U), U = 2001",
+        "space": "O(U)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  std::vector<int> seen;\n  int i = 0;\n  int key = 0;\n  seen = std::vector<int>(2001, 0);\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    key = (values[i] + 1000);\n    if ((seen[key] == 1)) {\n      return 1;\n    }\n    seen[key] = 1;\n    i = (i + 1);\n  }\n  return 0;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int[] seen = new int[0];\n    int i = 0;\n    int key = 0;\n    seen = new int[2001];\n    i = 0;\n    while ((i < values.length)) {\n      key = (values[i] + 1000);\n      if ((seen[key] == 1)) {\n        return 1;\n      }\n      seen[key] = 1;\n      i = (i + 1);\n    }\n    return 0;\n  }\n}",
+          "python": "def solve(values, target):\n    seen = [0] * (2001)\n    i = 0\n    while (i < len(values)):\n        key = (values[i] + 1000)\n        if (seen[key] == 1):\n            return 1\n        seen[key] = 1\n        i = (i + 1)\n    return 0"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            4,
+            -2,
+            1,
+            -2
+          ],
+          "target": 0
+        },
+        "expected": 1
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            5,
+            6
+          ],
+          "target": 0
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "slug": "maximum-subarray",
+    "title": "Maximum Subarray",
+    "topicId": "arrays-and-hashing",
+    "patternIds": [
+      "running-optimum"
+    ],
+    "difficulty": "medium",
+    "description": "Return the largest sum of a nonempty contiguous segment.",
+    "constraints": [
+      "Supply at least one value.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Carry yesterday’s savings forward only when they improve today’s balance.",
+    "hints": [
+      "Carry yesterday’s savings forward only when they improve today’s balance.",
+      "The best segment ending here either starts here or extends the previous best ending.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Initializing the answer to zero incorrectly allows an empty segment on all-negative input.",
+    "followUp": "How would you recover both endpoints?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "The best segment ending here either starts here or extends the previous best ending.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int ending = 0;\n  int best = 0;\n  int i = 0;\n  ending = values[0];\n  best = ending;\n  i = 1;\n  while ((i < static_cast<int>(values.size()))) {\n    ending = std::max(values[i], (ending + values[i]));\n    best = std::max(best, ending);\n    i = (i + 1);\n  }\n  return best;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int ending = 0;\n    int best = 0;\n    int i = 0;\n    ending = values[0];\n    best = ending;\n    i = 1;\n    while ((i < values.length)) {\n      ending = Math.max(values[i], (ending + values[i]));\n      best = Math.max(best, ending);\n      i = (i + 1);\n    }\n    return best;\n  }\n}",
+          "python": "def solve(values, target):\n    ending = values[0]\n    best = ending\n    i = 1\n    while (i < len(values)):\n        ending = max(values[i], (ending + values[i]))\n        best = max(best, ending)\n        i = (i + 1)\n    return best"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            -3,
+            4,
+            -1,
+            5,
+            -8
+          ],
+          "target": 0
+        },
+        "expected": 8
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            -7,
+            -2
+          ],
+          "target": 0
+        },
+        "expected": -2
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            0
+          ],
+          "target": 0
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "slug": "best-time-to-buy-and-sell-stock",
+    "title": "Best Time to Buy and Sell Stock",
+    "topicId": "arrays-and-hashing",
+    "patternIds": [
+      "linear-scan"
+    ],
+    "difficulty": "easy",
+    "description": "Buy once and sell on a later day. Return the largest profit, or zero if trading cannot help.",
+    "constraints": [
+      "Each value must be nonnegative.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A shopkeeper compares today’s offer with the cheapest purchase already seen.",
+    "hints": [
+      "A shopkeeper compares today’s offer with the cheapest purchase already seen.",
+      "Use the lowest earlier price to price a sale today.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Subtracting prices from dates in reverse order permits time travel.",
+    "followUp": "How does a transaction fee change the calculation?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Use the lowest earlier price to price a sale today.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int best = 0;\n  int low = 0;\n  int i = 0;\n  best = 0;\n  low = 1001;\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    best = std::max(best, (values[i] - low));\n    low = std::min(low, values[i]);\n    i = (i + 1);\n  }\n  return best;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int best = 0;\n    int low = 0;\n    int i = 0;\n    best = 0;\n    low = 1001;\n    i = 0;\n    while ((i < values.length)) {\n      best = Math.max(best, (values[i] - low));\n      low = Math.min(low, values[i]);\n      i = (i + 1);\n    }\n    return best;\n  }\n}",
+          "python": "def solve(values, target):\n    best = 0\n    low = 1001\n    i = 0\n    while (i < len(values)):\n        best = max(best, (values[i] - low))\n        low = min(low, values[i])\n        i = (i + 1)\n    return best"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            8,
+            3,
+            6,
+            2,
+            9
+          ],
+          "target": 0
+        },
+        "expected": 7
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            6,
+            3,
+            1
+          ],
+          "target": 0
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "slug": "running-sum",
+    "title": "Running Sum",
+    "topicId": "arrays-and-hashing",
+    "patternIds": [
+      "prefix-sum"
+    ],
+    "difficulty": "easy",
+    "description": "Produce a new array whose entry at i is the total from index zero through i.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "The display at a checkout shows the total after each item.",
+    "hints": [
+      "The display at a checkout shows the total after each item.",
+      "Keep the prefix sum in an accumulator as the input advances.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Resetting the accumulator at each item loses previous contributions.",
+    "followUp": "How do two prefix totals answer a range-sum query?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Keep the prefix sum in an accumulator as the input advances.",
+        "time": "O(n)",
+        "space": "O(n) output, O(1) auxiliary",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  std::vector<int> a;\n  int total = 0;\n  int i = 0;\n  a = values;\n  total = 0;\n  i = 0;\n  while ((i < static_cast<int>(a.size()))) {\n    total = (total + a[i]);\n    a[i] = total;\n    i = (i + 1);\n  }\n  return a;\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int[] a = new int[0];\n    int total = 0;\n    int i = 0;\n    a = values.clone();\n    total = 0;\n    i = 0;\n    while ((i < a.length)) {\n      total = (total + a[i]);\n      a[i] = total;\n      i = (i + 1);\n    }\n    return a;\n  }\n}",
+          "python": "def solve(values, target):\n    a = values.copy()\n    total = 0\n    i = 0\n    while (i < len(a)):\n        total = (total + a[i])\n        a[i] = total\n        i = (i + 1)\n    return a"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            3,
+            -2,
+            6,
+            4
+          ],
+          "target": 0
+        },
+        "expected": [
+          3,
+          1,
+          7,
+          11
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": []
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            5
+          ],
+          "target": 0
+        },
+        "expected": [
+          5
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "move-zeroes",
+    "title": "Move Zeroes",
+    "topicId": "arrays-and-hashing",
+    "patternIds": [
+      "two-pointers"
+    ],
+    "difficulty": "easy",
+    "description": "Move every zero to the end while preserving the order of nonzero entries. Return the rearranged copy.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Passengers move forward to fill vacant seats without overtaking.",
+    "hints": [
+      "Passengers move forward to fill vacant seats without overtaking.",
+      "Compact nonzero values into the front and fill the remaining positions with zero.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "A swap with the last element can reorder the nonzero values.",
+    "followUp": "How could you avoid writing cells already in place?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Compact nonzero values into the front and fill the remaining positions with zero.",
+        "time": "O(n)",
+        "space": "O(n) returned copy, O(1) auxiliary",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  std::vector<int> a;\n  int write = 0;\n  int i = 0;\n  a = values;\n  write = 0;\n  i = 0;\n  while ((i < static_cast<int>(a.size()))) {\n    if ((a[i] != 0)) {\n      a[write] = a[i];\n      write = (write + 1);\n    }\n    i = (i + 1);\n  }\n  while ((write < static_cast<int>(a.size()))) {\n    a[write] = 0;\n    write = (write + 1);\n  }\n  return a;\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int[] a = new int[0];\n    int write = 0;\n    int i = 0;\n    a = values.clone();\n    write = 0;\n    i = 0;\n    while ((i < a.length)) {\n      if ((a[i] != 0)) {\n        a[write] = a[i];\n        write = (write + 1);\n      }\n      i = (i + 1);\n    }\n    while ((write < a.length)) {\n      a[write] = 0;\n      write = (write + 1);\n    }\n    return a;\n  }\n}",
+          "python": "def solve(values, target):\n    a = values.copy()\n    write = 0\n    i = 0\n    while (i < len(a)):\n        if (a[i] != 0):\n            a[write] = a[i]\n            write = (write + 1)\n        i = (i + 1)\n    while (write < len(a)):\n        a[write] = 0\n        write = (write + 1)\n    return a"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            0,
+            3,
+            0,
+            -2,
+            5
+          ],
+          "target": 0
+        },
+        "expected": [
+          3,
+          -2,
+          5,
+          0,
+          0
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            0,
+            0
+          ],
+          "target": 0
+        },
+        "expected": [
+          0,
+          0
+        ]
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": []
+      }
+    ]
+  },
+  {
+    "slug": "selection-sort",
+    "title": "Selection Sort",
+    "topicId": "sorting",
+    "patternIds": [
+      "ordered-prefix"
+    ],
+    "difficulty": "easy",
+    "description": "Return the input sorted from smallest to largest by selecting the remaining minimum.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Select the shortest unlined-up student for each new place.",
+    "hints": [
+      "Select the shortest unlined-up student for each new place.",
+      "After each pass the prefix is final. Search the unplaced suffix for its smallest value.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Swapping immediately whenever a smaller item appears wastes writes.",
+    "followUp": "Why can the minimum swap disturb stability?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "After each pass the prefix is final. Search the unplaced suffix for its smallest value.",
+        "time": "O(n²)",
+        "space": "O(n) returned copy, O(1) auxiliary",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  std::vector<int> a;\n  int i = 0;\n  int smallest = 0;\n  int j = 0;\n  a = values;\n  i = 0;\n  while (((i + 1) < static_cast<int>(a.size()))) {\n    smallest = i;\n    j = (i + 1);\n    while ((j < static_cast<int>(a.size()))) {\n      if ((a[j] < a[smallest])) {\n        smallest = j;\n      }\n      j = (j + 1);\n    }\n    if ((smallest != i)) {\n      std::swap(a[i], a[smallest]);\n    }\n    i = (i + 1);\n  }\n  return a;\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int[] a = new int[0];\n    int i = 0;\n    int smallest = 0;\n    int j = 0;\n    a = values.clone();\n    i = 0;\n    while (((i + 1) < a.length)) {\n      smallest = i;\n      j = (i + 1);\n      while ((j < a.length)) {\n        if ((a[j] < a[smallest])) {\n          smallest = j;\n        }\n        j = (j + 1);\n      }\n      if ((smallest != i)) {\n        { int saved = a[i]; a[i] = a[smallest]; a[smallest] = saved; }\n      }\n      i = (i + 1);\n    }\n    return a;\n  }\n}",
+          "python": "def solve(values, target):\n    a = values.copy()\n    i = 0\n    while ((i + 1) < len(a)):\n        smallest = i\n        j = (i + 1)\n        while (j < len(a)):\n            if (a[j] < a[smallest]):\n                smallest = j\n            j = (j + 1)\n        if (smallest != i):\n            a[i], a[smallest] = a[smallest], a[i]\n        i = (i + 1)\n    return a"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            5,
+            1,
+            4,
+            2
+          ],
+          "target": 0
+        },
+        "expected": [
+          1,
+          2,
+          4,
+          5
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": []
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            3,
+            3
+          ],
+          "target": 0
+        },
+        "expected": [
+          3,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "bubble-sort",
+    "title": "Bubble Sort",
+    "topicId": "sorting",
+    "patternIds": [
+      "ordered-prefix"
+    ],
+    "difficulty": "easy",
+    "description": "Return the ascending sequence by repeatedly fixing inverted neighbouring pairs.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "In a line-up, taller neighbours step back until the tallest reaches the end.",
+    "hints": [
+      "In a line-up, taller neighbours step back until the tallest reaches the end.",
+      "The largest unplaced value reaches the end of each full pass.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "An early-exit flag must be reset at the start of each pass.",
+    "followUp": "What input gives this implementation a linear best case?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "The largest unplaced value reaches the end of each full pass.",
+        "time": "O(n²) worst, O(n) best",
+        "space": "O(n) returned copy, O(1) auxiliary",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  std::vector<int> a;\n  int end = 0;\n  int changed = 0;\n  int i = 0;\n  int j = 0;\n  a = values;\n  end = (static_cast<int>(a.size()) - 1);\n  while ((end > 0)) {\n    changed = 0;\n    i = 0;\n    while ((i < end)) {\n      j = (i + 1);\n      if ((a[i] > a[j])) {\n        std::swap(a[i], a[j]);\n        changed = 1;\n      }\n      i = (i + 1);\n    }\n    if ((changed == 0)) {\n      break;\n    }\n    end = (end - 1);\n  }\n  return a;\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int[] a = new int[0];\n    int end = 0;\n    int changed = 0;\n    int i = 0;\n    int j = 0;\n    a = values.clone();\n    end = (a.length - 1);\n    while ((end > 0)) {\n      changed = 0;\n      i = 0;\n      while ((i < end)) {\n        j = (i + 1);\n        if ((a[i] > a[j])) {\n          { int saved = a[i]; a[i] = a[j]; a[j] = saved; }\n          changed = 1;\n        }\n        i = (i + 1);\n      }\n      if ((changed == 0)) {\n        break;\n      }\n      end = (end - 1);\n    }\n    return a;\n  }\n}",
+          "python": "def solve(values, target):\n    a = values.copy()\n    end = (len(a) - 1)\n    while (end > 0):\n        changed = 0\n        i = 0\n        while (i < end):\n            j = (i + 1)\n            if (a[i] > a[j]):\n                a[i], a[j] = a[j], a[i]\n                changed = 1\n            i = (i + 1)\n        if (changed == 0):\n            break\n        end = (end - 1)\n    return a"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            7,
+            2,
+            5,
+            3
+          ],
+          "target": 0
+        },
+        "expected": [
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": []
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            1,
+            2,
+            2
+          ],
+          "target": 0
+        },
+        "expected": [
+          1,
+          2,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "insertion-sort",
+    "title": "Insertion Sort",
+    "topicId": "sorting",
+    "patternIds": [
+      "ordered-prefix"
+    ],
+    "difficulty": "easy",
+    "description": "Sort the sequence by inserting each new item into the already ordered prefix.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Insert a new playing card into the ordered hand you already hold.",
+    "hints": [
+      "Insert a new playing card into the ordered hand you already hold.",
+      "Save the incoming key before shifting larger entries right.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Overwriting the key before saving it silently duplicates another card.",
+    "followUp": "Why is insertion sort useful on nearly sorted input?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Save the incoming key before shifting larger entries right.",
+        "time": "O(n²) worst, O(n) best",
+        "space": "O(n) returned copy, O(1) auxiliary",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  std::vector<int> a;\n  int i = 0;\n  int key = 0;\n  int j = 0;\n  a = values;\n  i = 1;\n  while ((i < static_cast<int>(a.size()))) {\n    key = a[i];\n    j = (i - 1);\n    while (((j >= 0) && (a[j] > key))) {\n      a[(j + 1)] = a[j];\n      j = (j - 1);\n    }\n    a[(j + 1)] = key;\n    i = (i + 1);\n  }\n  return a;\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int[] a = new int[0];\n    int i = 0;\n    int key = 0;\n    int j = 0;\n    a = values.clone();\n    i = 1;\n    while ((i < a.length)) {\n      key = a[i];\n      j = (i - 1);\n      while (((j >= 0) && (a[j] > key))) {\n        a[(j + 1)] = a[j];\n        j = (j - 1);\n      }\n      a[(j + 1)] = key;\n      i = (i + 1);\n    }\n    return a;\n  }\n}",
+          "python": "def solve(values, target):\n    a = values.copy()\n    i = 1\n    while (i < len(a)):\n        key = a[i]\n        j = (i - 1)\n        while ((j >= 0) and (a[j] > key)):\n            a[(j + 1)] = a[j]\n            j = (j - 1)\n        a[(j + 1)] = key\n        i = (i + 1)\n    return a"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            6,
+            2,
+            4,
+            1
+          ],
+          "target": 0
+        },
+        "expected": [
+          1,
+          2,
+          4,
+          6
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": []
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            2,
+            2
+          ],
+          "target": 0
+        },
+        "expected": [
+          2,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "merge-sort",
+    "title": "Merge Sort",
+    "topicId": "sorting",
+    "patternIds": [
+      "divide-and-conquer"
+    ],
+    "difficulty": "medium",
+    "description": "Sort by merging adjacent ordered runs. Start at width one and double the width after each pass.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Two sorted queues send their lowest ticket number to a shared exit.",
+    "hints": [
+      "Two sorted queues send their lowest ticket number to a shared exit.",
+      "Compare the first unused item of each run; only the smaller one can be the next output.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "A partial run near the end still needs copying into the output.",
+    "followUp": "Why does taking the left item on equality preserve stability?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Compare the first unused item of each run; only the smaller one can be the next output.",
+        "time": "O(n log n)",
+        "space": "O(n)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  std::vector<int> a;\n  std::vector<int> buf;\n  int width = 0;\n  int start = 0;\n  int mid = 0;\n  int end = 0;\n  int left = 0;\n  int right = 0;\n  int out = 0;\n  a = values;\n  buf = std::vector<int>(static_cast<int>(a.size()), 0);\n  width = 1;\n  while ((width < static_cast<int>(a.size()))) {\n    start = 0;\n    while ((start < static_cast<int>(a.size()))) {\n      mid = std::min((start + width), static_cast<int>(a.size()));\n      end = std::min(((start + width) + width), static_cast<int>(a.size()));\n      left = start;\n      right = mid;\n      out = start;\n      while ((out < end)) {\n        if (((left < mid) && ((right >= end) || (a[left] <= a[right])))) {\n          buf[out] = a[left];\n          left = (left + 1);\n        } else {\n          buf[out] = a[right];\n          right = (right + 1);\n        }\n        out = (out + 1);\n      }\n      start = end;\n    }\n    a = buf;\n    width = (width * 2);\n  }\n  return a;\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int[] a = new int[0];\n    int[] buf = new int[0];\n    int width = 0;\n    int start = 0;\n    int mid = 0;\n    int end = 0;\n    int left = 0;\n    int right = 0;\n    int out = 0;\n    a = values.clone();\n    buf = new int[a.length];\n    width = 1;\n    while ((width < a.length)) {\n      start = 0;\n      while ((start < a.length)) {\n        mid = Math.min((start + width), a.length);\n        end = Math.min(((start + width) + width), a.length);\n        left = start;\n        right = mid;\n        out = start;\n        while ((out < end)) {\n          if (((left < mid) && ((right >= end) || (a[left] <= a[right])))) {\n            buf[out] = a[left];\n            left = (left + 1);\n          } else {\n            buf[out] = a[right];\n            right = (right + 1);\n          }\n          out = (out + 1);\n        }\n        start = end;\n      }\n      a = buf.clone();\n      width = (width * 2);\n    }\n    return a;\n  }\n}",
+          "python": "def solve(values, target):\n    a = values.copy()\n    buf = [0] * (len(a))\n    width = 1\n    while (width < len(a)):\n        start = 0\n        while (start < len(a)):\n            mid = min((start + width), len(a))\n            end = min(((start + width) + width), len(a))\n            left = start\n            right = mid\n            out = start\n            while (out < end):\n                if ((left < mid) and ((right >= end) or (a[left] <= a[right]))):\n                    buf[out] = a[left]\n                    left = (left + 1)\n                else:\n                    buf[out] = a[right]\n                    right = (right + 1)\n                out = (out + 1)\n            start = end\n        a = buf.copy()\n        width = (width * 2)\n    return a"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            8,
+            2,
+            7,
+            4,
+            1
+          ],
+          "target": 0
+        },
+        "expected": [
+          1,
+          2,
+          4,
+          7,
+          8
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": []
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            3,
+            1,
+            3
+          ],
+          "target": 0
+        },
+        "expected": [
+          1,
+          3,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "valid-palindrome",
+    "title": "Valid Palindrome",
+    "topicId": "strings",
+    "patternIds": [
+      "two-pointers"
+    ],
+    "difficulty": "easy",
+    "description": "Treat the input as a sequence of lowercase letters and return 1 if it reads identically backwards, otherwise 0.",
+    "constraints": [
+      "Use lowercase letters encoded as 0 (a) through 25 (z).",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Read a line of letter tiles from both ends toward the centre.",
+    "hints": [
+      "Read a line of letter tiles from both ends toward the centre.",
+      "Each outside pair must match before the inner sequence matters.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Comparing only one end pair cannot establish that the whole string is a palindrome.",
+    "followUp": "How could you ignore spaces and punctuation?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Each outside pair must match before the inner sequence matters.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int left = 0;\n  int right = 0;\n  left = 0;\n  right = (static_cast<int>(values.size()) - 1);\n  while ((left < right)) {\n    if ((values[left] != values[right])) {\n      return 0;\n    }\n    left = (left + 1);\n    right = (right - 1);\n  }\n  return 1;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int left = 0;\n    int right = 0;\n    left = 0;\n    right = (values.length - 1);\n    while ((left < right)) {\n      if ((values[left] != values[right])) {\n        return 0;\n      }\n      left = (left + 1);\n      right = (right - 1);\n    }\n    return 1;\n  }\n}",
+          "python": "def solve(values, target):\n    left = 0\n    right = (len(values) - 1)\n    while (left < right):\n        if (values[left] != values[right]):\n            return 0\n        left = (left + 1)\n        right = (right - 1)\n    return 1"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            0,
+            1,
+            2,
+            1,
+            0
+          ],
+          "target": 0
+        },
+        "expected": 1
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            1,
+            0
+          ],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "slug": "first-unique-character",
+    "title": "First Unique Character",
+    "topicId": "strings",
+    "patternIds": [
+      "frequency-counting"
+    ],
+    "difficulty": "easy",
+    "description": "Return the index of the first lowercase letter appearing exactly once, or -1.",
+    "constraints": [
+      "Use lowercase letters encoded as 0 (a) through 25 (z).",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "After tallying votes, revisit the original queue to find the earliest solo vote.",
+    "hints": [
+      "After tallying votes, revisit the original queue to find the earliest solo vote.",
+      "Count every character before deciding which occurrence is unique.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Iterating the alphabet returns the smallest unique character, which can occur later.",
+    "followUp": "What information must a streaming solution retain?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Count every character before deciding which occurrence is unique.",
+        "time": "O(n + 26)",
+        "space": "O(26)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  std::vector<int> counts;\n  int i = 0;\n  int letter = 0;\n  counts = std::vector<int>(26, 0);\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    letter = values[i];\n    counts[letter] = (counts[letter] + 1);\n    i = (i + 1);\n  }\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    if ((counts[values[i]] == 1)) {\n      return i;\n    }\n    i = (i + 1);\n  }\n  return -1;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int[] counts = new int[0];\n    int i = 0;\n    int letter = 0;\n    counts = new int[26];\n    i = 0;\n    while ((i < values.length)) {\n      letter = values[i];\n      counts[letter] = (counts[letter] + 1);\n      i = (i + 1);\n    }\n    i = 0;\n    while ((i < values.length)) {\n      if ((counts[values[i]] == 1)) {\n        return i;\n      }\n      i = (i + 1);\n    }\n    return -1;\n  }\n}",
+          "python": "def solve(values, target):\n    counts = [0] * (26)\n    i = 0\n    while (i < len(values)):\n        letter = values[i]\n        counts[letter] = (counts[letter] + 1)\n        i = (i + 1)\n    i = 0\n    while (i < len(values)):\n        if (counts[values[i]] == 1):\n            return i\n        i = (i + 1)\n    return -1"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            3,
+            1,
+            3,
+            2
+          ],
+          "target": 0
+        },
+        "expected": 1
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            0,
+            0
+          ],
+          "target": 0
+        },
+        "expected": -1
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": -1
+      }
+    ]
+  },
+  {
+    "slug": "longest-run",
+    "title": "Longest Equal Run",
+    "topicId": "strings",
+    "patternIds": [
+      "linear-scan"
+    ],
+    "difficulty": "easy",
+    "description": "Find the length of the longest uninterrupted run of equal lowercase letters.",
+    "constraints": [
+      "Use lowercase letters encoded as 0 (a) through 25 (z).",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A winning streak ends as soon as the jersey colour changes.",
+    "hints": [
+      "A winning streak ends as soon as the jersey colour changes.",
+      "Only an equal neighbour extends the current run; any change starts length one.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Counting all copies combines runs that a different character separates.",
+    "followUp": "How would you return the letter and first position of a longest run?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Only an equal neighbour extends the current run; any change starts length one.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int run = 0;\n  int best = 0;\n  int i = 0;\n  run = 0;\n  best = 0;\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    if (((i > 0) && (values[i] == values[(i - 1)]))) {\n      run = (run + 1);\n    } else {\n      run = 1;\n    }\n    best = std::max(run, best);\n    i = (i + 1);\n  }\n  return best;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int run = 0;\n    int best = 0;\n    int i = 0;\n    run = 0;\n    best = 0;\n    i = 0;\n    while ((i < values.length)) {\n      if (((i > 0) && (values[i] == values[(i - 1)]))) {\n        run = (run + 1);\n      } else {\n        run = 1;\n      }\n      best = Math.max(run, best);\n      i = (i + 1);\n    }\n    return best;\n  }\n}",
+          "python": "def solve(values, target):\n    run = 0\n    best = 0\n    i = 0\n    while (i < len(values)):\n        if ((i > 0) and (values[i] == values[(i - 1)])):\n            run = (run + 1)\n        else:\n            run = 1\n        best = max(run, best)\n        i = (i + 1)\n    return best"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            1,
+            1,
+            2,
+            2,
+            2,
+            1
+          ],
+          "target": 0
+        },
+        "expected": 3
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            4
+          ],
+          "target": 0
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "slug": "two-sum-ii",
+    "title": "Two Sum in a Sorted Array",
+    "topicId": "two-pointers",
+    "patternIds": [
+      "two-pointers"
+    ],
+    "difficulty": "easy",
+    "description": "In sorted input return indices of a pair summing to the target, or an empty array. Resolve ties with the earliest left index and latest matching right index.",
+    "constraints": [
+      "Values must be in nondecreasing order.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Adjust two ends of a balance scale, moving only the side whose change improves the total.",
+    "hints": [
+      "Adjust two ends of a balance scale, moving only the side whose change improves the total.",
+      "If the sum is too small, the left item cannot work with any remaining partner. A too-large sum rules out the right item.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Identical values still require two distinct positions.",
+    "followUp": "Why is sorted order essential to this elimination?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "If the sum is too small, the left item cannot work with any remaining partner. A too-large sum rules out the right item.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  int left = 0;\n  int right = 0;\n  int total = 0;\n  left = 0;\n  right = (static_cast<int>(values.size()) - 1);\n  while ((left < right)) {\n    total = (values[left] + values[right]);\n    if ((total == target)) {\n      return std::vector<int>{left, right};\n    }\n    if ((total < target)) {\n      left = (left + 1);\n    } else {\n      right = (right - 1);\n    }\n  }\n  return std::vector<int>{};\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int left = 0;\n    int right = 0;\n    int total = 0;\n    left = 0;\n    right = (values.length - 1);\n    while ((left < right)) {\n      total = (values[left] + values[right]);\n      if ((total == target)) {\n        return new int[]{left, right};\n      }\n      if ((total < target)) {\n        left = (left + 1);\n      } else {\n        right = (right - 1);\n      }\n    }\n    return new int[]{};\n  }\n}",
+          "python": "def solve(values, target):\n    left = 0\n    right = (len(values) - 1)\n    while (left < right):\n        total = (values[left] + values[right])\n        if (total == target):\n            return [left, right]\n        if (total < target):\n            left = (left + 1)\n        else:\n            right = (right - 1)\n    return []"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            1,
+            3,
+            4,
+            7,
+            9
+          ],
+          "target": 10
+        },
+        "expected": [
+          0,
+          4
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            3
+          ],
+          "target": 6
+        },
+        "expected": []
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [],
+          "target": 2
+        },
+        "expected": []
+      }
+    ]
+  },
+  {
+    "slug": "remove-duplicates-from-sorted-array",
+    "title": "Compress Sorted Values",
+    "topicId": "two-pointers",
+    "patternIds": [
+      "two-pointers"
+    ],
+    "difficulty": "easy",
+    "description": "Return the distinct values of the sorted input in their original order.",
+    "constraints": [
+      "Values must be in nondecreasing order.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A class register needs one entry per group of identical name tags.",
+    "hints": [
+      "A class register needs one entry per group of identical name tags.",
+      "Count and copy run starts; every different value starts a new run.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "An empty sequence contains zero distinct values.",
+    "followUp": "How could you compact the original array using a write pointer?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Count and copy run starts; every different value starts a new run.",
+        "time": "O(n)",
+        "space": "O(u) output for u distinct values",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  int count = 0;\n  int i = 0;\n  std::vector<int> out;\n  int write = 0;\n  count = 0;\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    if (((i == 0) || (values[i] != values[(i - 1)]))) {\n      count = (count + 1);\n    }\n    i = (i + 1);\n  }\n  out = std::vector<int>(count, 0);\n  i = 0;\n  write = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    if (((i == 0) || (values[i] != values[(i - 1)]))) {\n      out[write] = values[i];\n      write = (write + 1);\n    }\n    i = (i + 1);\n  }\n  return out;\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int count = 0;\n    int i = 0;\n    int[] out = new int[0];\n    int write = 0;\n    count = 0;\n    i = 0;\n    while ((i < values.length)) {\n      if (((i == 0) || (values[i] != values[(i - 1)]))) {\n        count = (count + 1);\n      }\n      i = (i + 1);\n    }\n    out = new int[count];\n    i = 0;\n    write = 0;\n    while ((i < values.length)) {\n      if (((i == 0) || (values[i] != values[(i - 1)]))) {\n        out[write] = values[i];\n        write = (write + 1);\n      }\n      i = (i + 1);\n    }\n    return out;\n  }\n}",
+          "python": "def solve(values, target):\n    count = 0\n    i = 0\n    while (i < len(values)):\n        if ((i == 0) or (values[i] != values[(i - 1)])):\n            count = (count + 1)\n        i = (i + 1)\n    out = [0] * (count)\n    i = 0\n    write = 0\n    while (i < len(values)):\n        if ((i == 0) or (values[i] != values[(i - 1)])):\n            out[write] = values[i]\n            write = (write + 1)\n        i = (i + 1)\n    return out"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            1,
+            1,
+            2,
+            4,
+            4
+          ],
+          "target": 0
+        },
+        "expected": [
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": []
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            2,
+            2
+          ],
+          "target": 0
+        },
+        "expected": [
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "container-with-most-water",
+    "title": "Container With Most Water",
+    "topicId": "two-pointers",
+    "patternIds": [
+      "two-pointers"
+    ],
+    "difficulty": "medium",
+    "description": "Two vertical walls enclose width times the shorter height. Return the greatest area among all pairs.",
+    "constraints": [
+      "Each value must be nonnegative.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A reservoir spills over the lower of its two retaining walls.",
+    "hints": [
+      "A reservoir spills over the lower of its two retaining walls.",
+      "Moving the taller wall cannot improve the area while the shorter wall is fixed.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Height alone ignores the distance between walls.",
+    "followUp": "Does the choice matter when both walls have equal height?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Moving the taller wall cannot improve the area while the shorter wall is fixed.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int left = 0;\n  int right = 0;\n  int best = 0;\n  int area = 0;\n  left = 0;\n  right = (static_cast<int>(values.size()) - 1);\n  best = 0;\n  while ((left < right)) {\n    area = (std::min(values[left], values[right]) * (right - left));\n    best = std::max(area, best);\n    if ((values[left] <= values[right])) {\n      left = (left + 1);\n    } else {\n      right = (right - 1);\n    }\n  }\n  return best;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int left = 0;\n    int right = 0;\n    int best = 0;\n    int area = 0;\n    left = 0;\n    right = (values.length - 1);\n    best = 0;\n    while ((left < right)) {\n      area = (Math.min(values[left], values[right]) * (right - left));\n      best = Math.max(area, best);\n      if ((values[left] <= values[right])) {\n        left = (left + 1);\n      } else {\n        right = (right - 1);\n      }\n    }\n    return best;\n  }\n}",
+          "python": "def solve(values, target):\n    left = 0\n    right = (len(values) - 1)\n    best = 0\n    while (left < right):\n        area = (min(values[left], values[right]) * (right - left))\n        best = max(area, best)\n        if (values[left] <= values[right]):\n            left = (left + 1)\n        else:\n            right = (right - 1)\n    return best"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            2,
+            8,
+            3,
+            6,
+            5
+          ],
+          "target": 0
+        },
+        "expected": 15
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            4
+          ],
+          "target": 0
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "slug": "reverse-array",
+    "title": "Reverse an Array",
+    "topicId": "two-pointers",
+    "patternIds": [
+      "two-pointers"
+    ],
+    "difficulty": "easy",
+    "description": "Return a reversed copy by exchanging symmetric positions.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Two friends rehang a row of photos, swapping the outermost unfinished pair.",
+    "hints": [
+      "Two friends rehang a row of photos, swapping the outermost unfinished pair.",
+      "Every successful swap finalizes both ends of the remaining interval.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Swapping across the entire index range undoes earlier exchanges.",
+    "followUp": "How many swaps does a length-n array require?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Every successful swap finalizes both ends of the remaining interval.",
+        "time": "O(n)",
+        "space": "O(n) returned copy, O(1) auxiliary",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  std::vector<int> a;\n  int left = 0;\n  int right = 0;\n  a = values;\n  left = 0;\n  right = (static_cast<int>(a.size()) - 1);\n  while ((left < right)) {\n    std::swap(a[left], a[right]);\n    left = (left + 1);\n    right = (right - 1);\n  }\n  return a;\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int[] a = new int[0];\n    int left = 0;\n    int right = 0;\n    a = values.clone();\n    left = 0;\n    right = (a.length - 1);\n    while ((left < right)) {\n      { int saved = a[left]; a[left] = a[right]; a[right] = saved; }\n      left = (left + 1);\n      right = (right - 1);\n    }\n    return a;\n  }\n}",
+          "python": "def solve(values, target):\n    a = values.copy()\n    left = 0\n    right = (len(a) - 1)\n    while (left < right):\n        a[left], a[right] = a[right], a[left]\n        left = (left + 1)\n        right = (right - 1)\n    return a"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            3,
+            8,
+            1,
+            5
+          ],
+          "target": 0
+        },
+        "expected": [
+          5,
+          1,
+          8,
+          3
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": []
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            4
+          ],
+          "target": 0
+        },
+        "expected": [
+          4
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "maximum-sum-subarray-of-size-k",
+    "title": "Maximum Sum Window",
+    "topicId": "sliding-window",
+    "patternIds": [
+      "fixed-window"
+    ],
+    "difficulty": "easy",
+    "description": "Among all consecutive windows containing exactly target items, return the largest sum.",
+    "constraints": [
+      "Target is a window size from 1 through the array length.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A camera frame pans across a row; only the two edges change.",
+    "hints": [
+      "A camera frame pans across a row; only the two edges change.",
+      "When moving one place, remove the outgoing value and add the incoming one.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "A best sum of zero fails when every valid window has negative sum.",
+    "followUp": "Could the same update maintain a window minimum?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "When moving one place, remove the outgoing value and add the incoming one.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int total = 0;\n  int right = 0;\n  int best = 0;\n  int left = 0;\n  total = 0;\n  right = 0;\n  while ((right < target)) {\n    total = (total + values[right]);\n    right = (right + 1);\n  }\n  best = total;\n  left = 0;\n  while ((right < static_cast<int>(values.size()))) {\n    total = ((total - values[left]) + values[right]);\n    best = std::max(best, total);\n    left = (left + 1);\n    right = (right + 1);\n  }\n  return best;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int total = 0;\n    int right = 0;\n    int best = 0;\n    int left = 0;\n    total = 0;\n    right = 0;\n    while ((right < target)) {\n      total = (total + values[right]);\n      right = (right + 1);\n    }\n    best = total;\n    left = 0;\n    while ((right < values.length)) {\n      total = ((total - values[left]) + values[right]);\n      best = Math.max(best, total);\n      left = (left + 1);\n      right = (right + 1);\n    }\n    return best;\n  }\n}",
+          "python": "def solve(values, target):\n    total = 0\n    right = 0\n    while (right < target):\n        total = (total + values[right])\n        right = (right + 1)\n    best = total\n    left = 0\n    while (right < len(values)):\n        total = ((total - values[left]) + values[right])\n        best = max(best, total)\n        left = (left + 1)\n        right = (right + 1)\n    return best"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            4,
+            -1,
+            3,
+            5,
+            -2
+          ],
+          "target": 2
+        },
+        "expected": 8
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            -5,
+            -2
+          ],
+          "target": 1
+        },
+        "expected": -2
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            2
+          ],
+          "target": 1
+        },
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "slug": "minimum-size-subarray-sum",
+    "title": "Smallest Qualifying Window",
+    "topicId": "sliding-window",
+    "patternIds": [
+      "variable-window"
+    ],
+    "difficulty": "medium",
+    "description": "Return the shortest contiguous length whose positive values sum to at least the positive target; return zero if impossible.",
+    "constraints": [
+      "Each value must be positive.",
+      "Target must be a positive integer.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Buy as few adjacent food parcels as possible while reaching a calorie goal.",
+    "hints": [
+      "Buy as few adjacent food parcels as possible while reaching a calorie goal.",
+      "Expand until a window qualifies, then shrink repeatedly to locate the shortest qualifying suffix.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Negative values would invalidate the monotonic shrinking argument.",
+    "followUp": "Why does the inner loop still permit linear total work?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Expand until a window qualifies, then shrink repeatedly to locate the shortest qualifying suffix.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int left = 0;\n  int right = 0;\n  int total = 0;\n  int best = 0;\n  left = 0;\n  right = 0;\n  total = 0;\n  best = (static_cast<int>(values.size()) + 1);\n  while ((right < static_cast<int>(values.size()))) {\n    total = (total + values[right]);\n    while ((total >= target)) {\n      best = std::min(best, ((right - left) + 1));\n      total = (total - values[left]);\n      left = (left + 1);\n    }\n    right = (right + 1);\n  }\n  if ((best > static_cast<int>(values.size()))) {\n    return 0;\n  }\n  return best;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int left = 0;\n    int right = 0;\n    int total = 0;\n    int best = 0;\n    left = 0;\n    right = 0;\n    total = 0;\n    best = (values.length + 1);\n    while ((right < values.length)) {\n      total = (total + values[right]);\n      while ((total >= target)) {\n        best = Math.min(best, ((right - left) + 1));\n        total = (total - values[left]);\n        left = (left + 1);\n      }\n      right = (right + 1);\n    }\n    if ((best > values.length)) {\n      return 0;\n    }\n    return best;\n  }\n}",
+          "python": "def solve(values, target):\n    left = 0\n    right = 0\n    total = 0\n    best = (len(values) + 1)\n    while (right < len(values)):\n        total = (total + values[right])\n        while (total >= target):\n            best = min(best, ((right - left) + 1))\n            total = (total - values[left])\n            left = (left + 1)\n        right = (right + 1)\n    if (best > len(values)):\n        return 0\n    return best"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            2,
+            3,
+            1,
+            2,
+            4,
+            3
+          ],
+          "target": 7
+        },
+        "expected": 2
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 3
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            1,
+            2
+          ],
+          "target": 7
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "slug": "longest-substring-without-repeating-characters",
+    "title": "Longest Distinct Substring",
+    "topicId": "sliding-window",
+    "patternIds": [
+      "variable-window"
+    ],
+    "difficulty": "medium",
+    "description": "Return the greatest length of a contiguous lowercase-letter sequence with no repeated letter.",
+    "constraints": [
+      "Use lowercase letters encoded as 0 (a) through 25 (z).",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Seat guests in a continuous row while admitting each badge colour only once.",
+    "hints": [
+      "Seat guests in a continuous row while admitting each badge colour only once.",
+      "Use each letter’s previous position to move the left boundary just beyond a conflicting occurrence.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "The left boundary must never move backwards to a stale occurrence.",
+    "followUp": "What changes for arbitrary Unicode input?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Use each letter’s previous position to move the left boundary just beyond a conflicting occurrence.",
+        "time": "O(n + 26)",
+        "space": "O(26)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  std::vector<int> last;\n  int left = 0;\n  int right = 0;\n  int best = 0;\n  int key = 0;\n  last = std::vector<int>(26, 0);\n  left = 0;\n  right = 0;\n  best = 0;\n  while ((right < static_cast<int>(values.size()))) {\n    key = values[right];\n    left = std::max(left, last[key]);\n    best = std::max(best, ((right - left) + 1));\n    last[key] = (right + 1);\n    right = (right + 1);\n  }\n  return best;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int[] last = new int[0];\n    int left = 0;\n    int right = 0;\n    int best = 0;\n    int key = 0;\n    last = new int[26];\n    left = 0;\n    right = 0;\n    best = 0;\n    while ((right < values.length)) {\n      key = values[right];\n      left = Math.max(left, last[key]);\n      best = Math.max(best, ((right - left) + 1));\n      last[key] = (right + 1);\n      right = (right + 1);\n    }\n    return best;\n  }\n}",
+          "python": "def solve(values, target):\n    last = [0] * (26)\n    left = 0\n    right = 0\n    best = 0\n    while (right < len(values)):\n        key = values[right]\n        left = max(left, last[key])\n        best = max(best, ((right - left) + 1))\n        last[key] = (right + 1)\n        right = (right + 1)\n    return best"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            0,
+            1,
+            2,
+            0,
+            1,
+            3
+          ],
+          "target": 0
+        },
+        "expected": 4
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            0,
+            0
+          ],
+          "target": 0
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "slug": "binary-search",
+    "title": "Binary Search",
+    "topicId": "binary-search",
+    "patternIds": [
+      "binary-search"
+    ],
+    "difficulty": "easy",
+    "description": "Find the target in a sorted array. Return any matching zero-based index, or -1.",
+    "constraints": [
+      "Values must be in nondecreasing order.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A librarian opens the middle of a sorted catalogue and closes an entire half after each comparison.",
+    "hints": [
+      "A librarian opens the middle of a sorted catalogue and closes an entire half after each comparison.",
+      "Check the midpoint of the inclusive range. Sorted order tells you which half cannot contain the target.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Updating a boundary to mid instead of moving past it can repeat the same interval forever.",
+    "followUp": "How would the boundaries change if you needed the first match?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Check the midpoint of the inclusive range. Sorted order tells you which half cannot contain the target.",
+        "time": "O(log n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int left = 0;\n  int right = 0;\n  int mid = 0;\n  left = 0;\n  right = (static_cast<int>(values.size()) - 1);\n  while ((left <= right)) {\n    mid = (left + ((right - left) / 2));\n    if ((values[mid] == target)) {\n      return mid;\n    }\n    if ((values[mid] < target)) {\n      left = (mid + 1);\n    } else {\n      right = (mid - 1);\n    }\n  }\n  return -1;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int left = 0;\n    int right = 0;\n    int mid = 0;\n    left = 0;\n    right = (values.length - 1);\n    while ((left <= right)) {\n      mid = (left + ((right - left) / 2));\n      if ((values[mid] == target)) {\n        return mid;\n      }\n      if ((values[mid] < target)) {\n        left = (mid + 1);\n      } else {\n        right = (mid - 1);\n      }\n    }\n    return -1;\n  }\n}",
+          "python": "def solve(values, target):\n    left = 0\n    right = (len(values) - 1)\n    while (left <= right):\n        mid = (left + ((right - left) // 2))\n        if (values[mid] == target):\n            return mid\n        if (values[mid] < target):\n            left = (mid + 1)\n        else:\n            right = (mid - 1)\n    return -1"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            2,
+            5,
+            8,
+            12,
+            16,
+            23,
+            38,
+            56,
+            72
+          ],
+          "target": 23
+        },
+        "expected": 5
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 3
+        },
+        "expected": -1
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            2
+          ],
+          "target": 3
+        },
+        "expected": -1
+      },
+      {
+        "label": "Edge case 3",
+        "input": {
+          "values": [
+            4
+          ],
+          "target": 4
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "slug": "search-insert-position",
+    "title": "Search Insert Position",
+    "topicId": "binary-search",
+    "patternIds": [
+      "boundary-search"
+    ],
+    "difficulty": "easy",
+    "description": "Find the first position at which the target can be inserted before any equal values while preserving order.",
+    "constraints": [
+      "Values must be in nondecreasing order.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Locate the dividing line between two adjacent seating sections; the first seat of one ends the other.",
+    "hints": [
+      "Locate the dividing line between two adjacent seating sections; the first seat of one ends the other.",
+      "Maintain a half-open range. Every item removed on the left is on the known lower side of the boundary.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Stopping at the first equality can land in the middle of duplicate values.",
+    "followUp": "Which inequality moves the boundary beyond every duplicate?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Maintain a half-open range. Every item removed on the left is on the known lower side of the boundary.",
+        "time": "O(log n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int left = 0;\n  int right = 0;\n  int mid = 0;\n  left = 0;\n  right = static_cast<int>(values.size());\n  while ((left < right)) {\n    mid = (left + ((right - left) / 2));\n    if ((values[mid] < target)) {\n      left = (mid + 1);\n    } else {\n      right = mid;\n    }\n  }\n  return left;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int left = 0;\n    int right = 0;\n    int mid = 0;\n    left = 0;\n    right = values.length;\n    while ((left < right)) {\n      mid = (left + ((right - left) / 2));\n      if ((values[mid] < target)) {\n        left = (mid + 1);\n      } else {\n        right = mid;\n      }\n    }\n    return left;\n  }\n}",
+          "python": "def solve(values, target):\n    left = 0\n    right = len(values)\n    while (left < right):\n        mid = (left + ((right - left) // 2))\n        if (values[mid] < target):\n            left = (mid + 1)\n        else:\n            right = mid\n    return left"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            1,
+            3,
+            3,
+            3,
+            7
+          ],
+          "target": 3
+        },
+        "expected": 1
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 5
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            1,
+            2
+          ],
+          "target": 4
+        },
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "slug": "first-occurrence",
+    "title": "First Occurrence",
+    "topicId": "binary-search",
+    "patternIds": [
+      "boundary-search"
+    ],
+    "difficulty": "easy",
+    "description": "Return the first matching position in sorted order, or -1.",
+    "constraints": [
+      "Values must be in nondecreasing order.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Locate the dividing line between two adjacent seating sections; the first seat of one ends the other.",
+    "hints": [
+      "Locate the dividing line between two adjacent seating sections; the first seat of one ends the other.",
+      "Maintain a half-open range. Every item removed on the left is on the known lower side of the boundary.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Stopping at the first equality can land in the middle of duplicate values.",
+    "followUp": "Which inequality moves the boundary beyond every duplicate?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Maintain a half-open range. Every item removed on the left is on the known lower side of the boundary.",
+        "time": "O(log n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int left = 0;\n  int right = 0;\n  int mid = 0;\n  left = 0;\n  right = static_cast<int>(values.size());\n  while ((left < right)) {\n    mid = (left + ((right - left) / 2));\n    if ((values[mid] < target)) {\n      left = (mid + 1);\n    } else {\n      right = mid;\n    }\n  }\n  if (((left < static_cast<int>(values.size())) && (values[left] == target))) {\n    return left;\n  }\n  return -1;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int left = 0;\n    int right = 0;\n    int mid = 0;\n    left = 0;\n    right = values.length;\n    while ((left < right)) {\n      mid = (left + ((right - left) / 2));\n      if ((values[mid] < target)) {\n        left = (mid + 1);\n      } else {\n        right = mid;\n      }\n    }\n    if (((left < values.length) && (values[left] == target))) {\n      return left;\n    }\n    return -1;\n  }\n}",
+          "python": "def solve(values, target):\n    left = 0\n    right = len(values)\n    while (left < right):\n        mid = (left + ((right - left) // 2))\n        if (values[mid] < target):\n            left = (mid + 1)\n        else:\n            right = mid\n    if ((left < len(values)) and (values[left] == target)):\n        return left\n    return -1"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            1,
+            3,
+            3,
+            3,
+            7
+          ],
+          "target": 3
+        },
+        "expected": 1
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 5
+        },
+        "expected": -1
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            1,
+            2
+          ],
+          "target": 4
+        },
+        "expected": -1
+      }
+    ]
+  },
+  {
+    "slug": "last-occurrence",
+    "title": "Last Occurrence",
+    "topicId": "binary-search",
+    "patternIds": [
+      "boundary-search"
+    ],
+    "difficulty": "easy",
+    "description": "Return the last matching position in sorted order, or -1.",
+    "constraints": [
+      "Values must be in nondecreasing order.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Locate the dividing line between two adjacent seating sections; the first seat of one ends the other.",
+    "hints": [
+      "Locate the dividing line between two adjacent seating sections; the first seat of one ends the other.",
+      "Maintain a half-open range. Every item removed on the left is on the known lower side of the boundary.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Stopping at the first equality can land in the middle of duplicate values.",
+    "followUp": "Which inequality moves the boundary beyond every duplicate?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Maintain a half-open range. Every item removed on the left is on the known lower side of the boundary.",
+        "time": "O(log n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int left = 0;\n  int right = 0;\n  int candidate = 0;\n  int mid = 0;\n  left = 0;\n  right = static_cast<int>(values.size());\n  while ((left < right)) {\n    mid = (left + ((right - left) / 2));\n    if ((values[mid] <= target)) {\n      left = (mid + 1);\n    } else {\n      right = mid;\n    }\n  }\n  candidate = (left - 1);\n  if (((candidate >= 0) && (values[candidate] == target))) {\n    return candidate;\n  }\n  return -1;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int left = 0;\n    int right = 0;\n    int candidate = 0;\n    int mid = 0;\n    left = 0;\n    right = values.length;\n    while ((left < right)) {\n      mid = (left + ((right - left) / 2));\n      if ((values[mid] <= target)) {\n        left = (mid + 1);\n      } else {\n        right = mid;\n      }\n    }\n    candidate = (left - 1);\n    if (((candidate >= 0) && (values[candidate] == target))) {\n      return candidate;\n    }\n    return -1;\n  }\n}",
+          "python": "def solve(values, target):\n    left = 0\n    right = len(values)\n    while (left < right):\n        mid = (left + ((right - left) // 2))\n        if (values[mid] <= target):\n            left = (mid + 1)\n        else:\n            right = mid\n    candidate = (left - 1)\n    if ((candidate >= 0) and (values[candidate] == target)):\n        return candidate\n    return -1"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            1,
+            3,
+            3,
+            3,
+            7
+          ],
+          "target": 3
+        },
+        "expected": 3
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 5
+        },
+        "expected": -1
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            1,
+            2
+          ],
+          "target": 4
+        },
+        "expected": -1
+      }
+    ]
+  },
+  {
+    "slug": "integer-square-root",
+    "title": "Integer Square Root",
+    "topicId": "binary-search",
+    "patternIds": [
+      "search-on-answer"
+    ],
+    "difficulty": "easy",
+    "description": "Return the greatest integer whose square is at most the nonnegative target. The values list is unused.",
+    "constraints": [
+      "Target must be nonnegative.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Find the widest square tiled floor you can cover with a fixed number of tiles.",
+    "hints": [
+      "Find the widest square tiled floor you can cover with a fixed number of tiles.",
+      "Square a candidate root; a square within budget makes every smaller root feasible too.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Exact equality is unnecessary for numbers between consecutive squares.",
+    "followUp": "How would you avoid overflow for very large integer targets?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Square a candidate root; a square within budget makes every smaller root feasible too.",
+        "time": "O(log(t + 2))",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int low = 0;\n  int high = 0;\n  int best = 0;\n  int mid = 0;\n  low = 0;\n  high = target;\n  best = 0;\n  while ((low <= high)) {\n    mid = (low + ((high - low) / 2));\n    if (((mid * mid) <= target)) {\n      best = mid;\n      low = (mid + 1);\n    } else {\n      high = (mid - 1);\n    }\n  }\n  return best;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int low = 0;\n    int high = 0;\n    int best = 0;\n    int mid = 0;\n    low = 0;\n    high = target;\n    best = 0;\n    while ((low <= high)) {\n      mid = (low + ((high - low) / 2));\n      if (((mid * mid) <= target)) {\n        best = mid;\n        low = (mid + 1);\n      } else {\n        high = (mid - 1);\n      }\n    }\n    return best;\n  }\n}",
+          "python": "def solve(values, target):\n    low = 0\n    high = target\n    best = 0\n    while (low <= high):\n        mid = (low + ((high - low) // 2))\n        if ((mid * mid) <= target):\n            best = mid\n            low = (mid + 1)\n        else:\n            high = (mid - 1)\n    return best"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [],
+          "target": 38
+        },
+        "expected": 6
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [],
+          "target": 1
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "slug": "reverse-linked-list",
+    "title": "Reverse Linked List",
+    "topicId": "linked-lists",
+    "patternIds": [
+      "pointer-rewiring"
+    ],
+    "difficulty": "easy",
+    "description": "Construct nodes in input order, reverse their next links and return values encountered from the new head.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Turn one-way direction signs around while retaining a note of the original next stop.",
+    "hints": [
+      "Turn one-way direction signs around while retaining a note of the original next stop.",
+      "Save the next link before pointing the current node back to the previous one.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Rewiring before saving the old link loses the rest of the list.",
+    "followUp": "How would you reverse a sublist between two positions?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Save the next link before pointing the current node back to the previous one.",
+        "time": "O(n)",
+        "space": "O(n) node model and returned array, O(1) reversal workspace",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  std::vector<int> links;\n  int i = 0;\n  int prev = 0;\n  int cur = 0;\n  std::vector<int> out;\n  int nxt = 0;\n  links = std::vector<int>(static_cast<int>(values.size()), 0);\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    links[i] = (i + 1);\n    i = (i + 1);\n  }\n  if ((static_cast<int>(values.size()) > 0)) {\n    links[(static_cast<int>(values.size()) - 1)] = -1;\n  }\n  prev = -1;\n  cur = 0;\n  if ((static_cast<int>(values.size()) == 0)) {\n    cur = -1;\n  }\n  while ((cur != -1)) {\n    nxt = links[cur];\n    links[cur] = prev;\n    prev = cur;\n    cur = nxt;\n  }\n  out = std::vector<int>(static_cast<int>(values.size()), 0);\n  i = 0;\n  while ((prev != -1)) {\n    out[i] = values[prev];\n    prev = links[prev];\n    i = (i + 1);\n  }\n  return out;\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int[] links = new int[0];\n    int i = 0;\n    int prev = 0;\n    int cur = 0;\n    int[] out = new int[0];\n    int nxt = 0;\n    links = new int[values.length];\n    i = 0;\n    while ((i < values.length)) {\n      links[i] = (i + 1);\n      i = (i + 1);\n    }\n    if ((values.length > 0)) {\n      links[(values.length - 1)] = -1;\n    }\n    prev = -1;\n    cur = 0;\n    if ((values.length == 0)) {\n      cur = -1;\n    }\n    while ((cur != -1)) {\n      nxt = links[cur];\n      links[cur] = prev;\n      prev = cur;\n      cur = nxt;\n    }\n    out = new int[values.length];\n    i = 0;\n    while ((prev != -1)) {\n      out[i] = values[prev];\n      prev = links[prev];\n      i = (i + 1);\n    }\n    return out;\n  }\n}",
+          "python": "def solve(values, target):\n    links = [0] * (len(values))\n    i = 0\n    while (i < len(values)):\n        links[i] = (i + 1)\n        i = (i + 1)\n    if (len(values) > 0):\n        links[(len(values) - 1)] = -1\n    prev = -1\n    cur = 0\n    if (len(values) == 0):\n        cur = -1\n    while (cur != -1):\n        nxt = links[cur]\n        links[cur] = prev\n        prev = cur\n        cur = nxt\n    out = [0] * (len(values))\n    i = 0\n    while (prev != -1):\n        out[i] = values[prev]\n        prev = links[prev]\n        i = (i + 1)\n    return out"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            4,
+            7,
+            2,
+            9
+          ],
+          "target": 0
+        },
+        "expected": [
+          9,
+          2,
+          7,
+          4
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": []
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            8
+          ],
+          "target": 0
+        },
+        "expected": [
+          8
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "middle-of-the-linked-list",
+    "title": "Middle of the Linked List",
+    "topicId": "linked-lists",
+    "patternIds": [
+      "fast-slow-pointers"
+    ],
+    "difficulty": "easy",
+    "description": "Return the index of the middle node of the input-order list. For even lengths return the second middle. Return -1 when empty.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A runner travelling twice as fast reaches the finish when a walker reaches halfway.",
+    "hints": [
+      "A runner travelling twice as fast reaches the finish when a walker reaches halfway.",
+      "Advance one cursor by two links for every one-link move of the other.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Stopping the fast runner one move too early picks the first middle for even lengths.",
+    "followUp": "How would the fast pointer reveal a cycle?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Advance one cursor by two links for every one-link move of the other.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int slow = 0;\n  int fast = 0;\n  if ((static_cast<int>(values.size()) == 0)) {\n    return -1;\n  }\n  slow = 0;\n  fast = 0;\n  while (((fast + 1) < static_cast<int>(values.size()))) {\n    slow = (slow + 1);\n    fast = (fast + 2);\n  }\n  return slow;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int slow = 0;\n    int fast = 0;\n    if ((values.length == 0)) {\n      return -1;\n    }\n    slow = 0;\n    fast = 0;\n    while (((fast + 1) < values.length)) {\n      slow = (slow + 1);\n      fast = (fast + 2);\n    }\n    return slow;\n  }\n}",
+          "python": "def solve(values, target):\n    if (len(values) == 0):\n        return -1\n    slow = 0\n    fast = 0\n    while ((fast + 1) < len(values)):\n        slow = (slow + 1)\n        fast = (fast + 2)\n    return slow"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            7,
+            1,
+            9,
+            5
+          ],
+          "target": 0
+        },
+        "expected": 2
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": -1
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            2
+          ],
+          "target": 0
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "slug": "valid-parentheses",
+    "title": "Balanced Parentheses",
+    "topicId": "stacks-and-queues",
+    "patternIds": [
+      "matching-stack"
+    ],
+    "difficulty": "easy",
+    "description": "Return 1 if the sequence of opening and closing parentheses is balanced, otherwise 0. Encode ( as 1 and ) as -1.",
+    "constraints": [
+      "Use 1 for an opening parenthesis and -1 for a closing parenthesis.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Each opening ticket reserves one return visit. A return without a ticket is invalid.",
+    "hints": [
+      "Each opening ticket reserves one return visit. A return without a ticket is invalid.",
+      "A closing symbol must consume an available opening symbol. All openings must be consumed at the end.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "A final balance of zero alone cannot rule out an invalid closing prefix.",
+    "followUp": "How would several types of bracket change your state?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "A closing symbol must consume an available opening symbol. All openings must be consumed at the end.",
+        "time": "O(n)",
+        "space": "O(n) explicit teaching stack",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  std::vector<int> stack;\n  int top = 0;\n  int i = 0;\n  stack = std::vector<int>(static_cast<int>(values.size()), 0);\n  top = 0;\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    if ((values[i] == 1)) {\n      stack[top] = i;\n      top = (top + 1);\n    } else {\n      if ((top == 0)) {\n        return 0;\n      }\n      top = (top - 1);\n    }\n    i = (i + 1);\n  }\n  if ((top == 0)) {\n    return 1;\n  }\n  return 0;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int[] stack = new int[0];\n    int top = 0;\n    int i = 0;\n    stack = new int[values.length];\n    top = 0;\n    i = 0;\n    while ((i < values.length)) {\n      if ((values[i] == 1)) {\n        stack[top] = i;\n        top = (top + 1);\n      } else {\n        if ((top == 0)) {\n          return 0;\n        }\n        top = (top - 1);\n      }\n      i = (i + 1);\n    }\n    if ((top == 0)) {\n      return 1;\n    }\n    return 0;\n  }\n}",
+          "python": "def solve(values, target):\n    stack = [0] * (len(values))\n    top = 0\n    i = 0\n    while (i < len(values)):\n        if (values[i] == 1):\n            stack[top] = i\n            top = (top + 1)\n        else:\n            if (top == 0):\n                return 0\n            top = (top - 1)\n        i = (i + 1)\n    if (top == 0):\n        return 1\n    return 0"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            1,
+            1,
+            -1,
+            -1
+          ],
+          "target": 0
+        },
+        "expected": 1
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            -1,
+            1
+          ],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 1
+      },
+      {
+        "label": "Edge case 3",
+        "input": {
+          "values": [
+            1
+          ],
+          "target": 0
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "slug": "next-greater-element",
+    "title": "Next Greater Value",
+    "topicId": "stacks-and-queues",
+    "patternIds": [
+      "monotonic-stack"
+    ],
+    "difficulty": "medium",
+    "description": "For each position, find the first strictly larger value to its right. Use -1 where no such position exists.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A new taller spectator becomes the first taller neighbour visible to a stack of shorter spectators.",
+    "hints": [
+      "A new taller spectator becomes the first taller neighbour visible to a stack of shorter spectators.",
+      "Store unresolved indices in a decreasing stack. A new larger value answers every smaller item on top.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Popping on equality treats an equal value as a strict improvement.",
+    "followUp": "How many times can any index be pushed or popped?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Store unresolved indices in a decreasing stack. A new larger value answers every smaller item on top.",
+        "time": "O(n)",
+        "space": "O(n)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  std::vector<int> out;\n  std::vector<int> stack;\n  int top = 0;\n  int i = 0;\n  int old = 0;\n  out = std::vector<int>(static_cast<int>(values.size()), 0);\n  stack = std::vector<int>(static_cast<int>(values.size()), 0);\n  top = 0;\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    out[i] = -1;\n    while (((top > 0) && (values[stack[(top - 1)]] < values[i]))) {\n      top = (top - 1);\n      old = stack[top];\n      out[old] = values[i];\n    }\n    stack[top] = i;\n    top = (top + 1);\n    i = (i + 1);\n  }\n  return out;\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int[] out = new int[0];\n    int[] stack = new int[0];\n    int top = 0;\n    int i = 0;\n    int old = 0;\n    out = new int[values.length];\n    stack = new int[values.length];\n    top = 0;\n    i = 0;\n    while ((i < values.length)) {\n      out[i] = -1;\n      while (((top > 0) && (values[stack[(top - 1)]] < values[i]))) {\n        top = (top - 1);\n        old = stack[top];\n        out[old] = values[i];\n      }\n      stack[top] = i;\n      top = (top + 1);\n      i = (i + 1);\n    }\n    return out;\n  }\n}",
+          "python": "def solve(values, target):\n    out = [0] * (len(values))\n    stack = [0] * (len(values))\n    top = 0\n    i = 0\n    while (i < len(values)):\n        out[i] = -1\n        while ((top > 0) and (values[stack[(top - 1)]] < values[i])):\n            top = (top - 1)\n            old = stack[top]\n            out[old] = values[i]\n        stack[top] = i\n        top = (top + 1)\n        i = (i + 1)\n    return out"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            5,
+            3,
+            4,
+            7
+          ],
+          "target": 0
+        },
+        "expected": [
+          7,
+          4,
+          7,
+          -1
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": []
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            2,
+            2
+          ],
+          "target": 0
+        },
+        "expected": [
+          -1,
+          -1
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "daily-temperatures",
+    "title": "Daily Temperatures",
+    "topicId": "stacks-and-queues",
+    "patternIds": [
+      "monotonic-stack"
+    ],
+    "difficulty": "medium",
+    "description": "Return the distance to the next strictly warmer day for each position. Return zero if it never becomes warmer.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A new taller spectator becomes the first taller neighbour visible to a stack of shorter spectators.",
+    "hints": [
+      "A new taller spectator becomes the first taller neighbour visible to a stack of shorter spectators.",
+      "Store unresolved indices in a decreasing stack. A new larger value answers every smaller item on top.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Popping on equality treats an equal value as a strict improvement.",
+    "followUp": "How many times can any index be pushed or popped?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Store unresolved indices in a decreasing stack. A new larger value answers every smaller item on top.",
+        "time": "O(n)",
+        "space": "O(n)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  std::vector<int> out;\n  std::vector<int> stack;\n  int top = 0;\n  int i = 0;\n  int old = 0;\n  out = std::vector<int>(static_cast<int>(values.size()), 0);\n  stack = std::vector<int>(static_cast<int>(values.size()), 0);\n  top = 0;\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    out[i] = 0;\n    while (((top > 0) && (values[stack[(top - 1)]] < values[i]))) {\n      top = (top - 1);\n      old = stack[top];\n      out[old] = (i - old);\n    }\n    stack[top] = i;\n    top = (top + 1);\n    i = (i + 1);\n  }\n  return out;\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int[] out = new int[0];\n    int[] stack = new int[0];\n    int top = 0;\n    int i = 0;\n    int old = 0;\n    out = new int[values.length];\n    stack = new int[values.length];\n    top = 0;\n    i = 0;\n    while ((i < values.length)) {\n      out[i] = 0;\n      while (((top > 0) && (values[stack[(top - 1)]] < values[i]))) {\n        top = (top - 1);\n        old = stack[top];\n        out[old] = (i - old);\n      }\n      stack[top] = i;\n      top = (top + 1);\n      i = (i + 1);\n    }\n    return out;\n  }\n}",
+          "python": "def solve(values, target):\n    out = [0] * (len(values))\n    stack = [0] * (len(values))\n    top = 0\n    i = 0\n    while (i < len(values)):\n        out[i] = 0\n        while ((top > 0) and (values[stack[(top - 1)]] < values[i])):\n            top = (top - 1)\n            old = stack[top]\n            out[old] = (i - old)\n        stack[top] = i\n        top = (top + 1)\n        i = (i + 1)\n    return out"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            5,
+            3,
+            4,
+            7
+          ],
+          "target": 0
+        },
+        "expected": [
+          3,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": []
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            2,
+            2
+          ],
+          "target": 0
+        },
+        "expected": [
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "factorial",
+    "title": "Factorial with Stack Frames",
+    "topicId": "recursion-and-backtracking",
+    "patternIds": [
+      "recursion"
+    ],
+    "difficulty": "easy",
+    "description": "Compute target factorial by recording pending factors, then unwinding from the base case. The values list is unused.",
+    "constraints": [
+      "Target must be between 0 and 10.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Leave one signed order slip at every desk, then collect the answers in reverse desk order.",
+    "hints": [
+      "Leave one signed order slip at every desk, then collect the answers in reverse desk order.",
+      "Replace each factorial call with a pending multiplication. Begin returning at zero factorial, whose value is one.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "An empty product equals one, including zero factorial.",
+    "followUp": "How does a direct recursive function store the same pending work?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Replace each factorial call with a pending multiplication. Begin returning at zero factorial, whose value is one.",
+        "time": "O(t)",
+        "space": "O(t)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  std::vector<int> stack;\n  int top = 0;\n  int n = 0;\n  int result = 0;\n  stack = std::vector<int>(target, 0);\n  top = 0;\n  n = target;\n  while ((n > 0)) {\n    stack[top] = n;\n    top = (top + 1);\n    n = (n - 1);\n  }\n  result = 1;\n  while ((top > 0)) {\n    top = (top - 1);\n    result = (result * stack[top]);\n  }\n  return result;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int[] stack = new int[0];\n    int top = 0;\n    int n = 0;\n    int result = 0;\n    stack = new int[target];\n    top = 0;\n    n = target;\n    while ((n > 0)) {\n      stack[top] = n;\n      top = (top + 1);\n      n = (n - 1);\n    }\n    result = 1;\n    while ((top > 0)) {\n      top = (top - 1);\n      result = (result * stack[top]);\n    }\n    return result;\n  }\n}",
+          "python": "def solve(values, target):\n    stack = [0] * (target)\n    top = 0\n    n = target\n    while (n > 0):\n        stack[top] = n\n        top = (top + 1)\n        n = (n - 1)\n    result = 1\n    while (top > 0):\n        top = (top - 1)\n        result = (result * stack[top])\n    return result"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [],
+          "target": 5
+        },
+        "expected": 120
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 1
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [],
+          "target": 1
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "slug": "preorder-traversal",
+    "title": "Preorder Traversal",
+    "topicId": "trees",
+    "patternIds": [
+      "tree-traversal"
+    ],
+    "difficulty": "easy",
+    "description": "Visit a complete binary tree in root-left-right order and return its values. The input holds level-order values with no missing nodes.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "When two rooms branch off, put the later room on the to-do pile before the room to visit now.",
+    "hints": [
+      "When two rooms branch off, put the later room on the to-do pile before the room to visit now.",
+      "A stack drives traversal. Push the right child first so the left child is popped first.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Pushing the left child first reverses the intended visit order.",
+    "followUp": "How could a null marker represent sparse trees?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "A stack drives traversal. Push the right child first so the left child is popped first.",
+        "time": "O(n)",
+        "space": "O(n) allocated stack and output",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  std::vector<int> stack;\n  std::vector<int> out;\n  int top = 0;\n  int count = 0;\n  int node = 0;\n  int right = 0;\n  int left = 0;\n  stack = std::vector<int>(static_cast<int>(values.size()), 0);\n  out = std::vector<int>(static_cast<int>(values.size()), 0);\n  if ((static_cast<int>(values.size()) == 0)) {\n    return out;\n  }\n  top = 1;\n  stack[0] = 0;\n  count = 0;\n  while ((top > 0)) {\n    top = (top - 1);\n    node = stack[top];\n    out[count] = values[node];\n    count = (count + 1);\n    right = ((node * 2) + 2);\n    left = ((node * 2) + 1);\n    if ((right < static_cast<int>(values.size()))) {\n      stack[top] = right;\n      top = (top + 1);\n    }\n    if ((left < static_cast<int>(values.size()))) {\n      stack[top] = left;\n      top = (top + 1);\n    }\n  }\n  return out;\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int[] stack = new int[0];\n    int[] out = new int[0];\n    int top = 0;\n    int count = 0;\n    int node = 0;\n    int right = 0;\n    int left = 0;\n    stack = new int[values.length];\n    out = new int[values.length];\n    if ((values.length == 0)) {\n      return out;\n    }\n    top = 1;\n    stack[0] = 0;\n    count = 0;\n    while ((top > 0)) {\n      top = (top - 1);\n      node = stack[top];\n      out[count] = values[node];\n      count = (count + 1);\n      right = ((node * 2) + 2);\n      left = ((node * 2) + 1);\n      if ((right < values.length)) {\n        stack[top] = right;\n        top = (top + 1);\n      }\n      if ((left < values.length)) {\n        stack[top] = left;\n        top = (top + 1);\n      }\n    }\n    return out;\n  }\n}",
+          "python": "def solve(values, target):\n    stack = [0] * (len(values))\n    out = [0] * (len(values))\n    if (len(values) == 0):\n        return out\n    top = 1\n    stack[0] = 0\n    count = 0\n    while (top > 0):\n        top = (top - 1)\n        node = stack[top]\n        out[count] = values[node]\n        count = (count + 1)\n        right = ((node * 2) + 2)\n        left = ((node * 2) + 1)\n        if (right < len(values)):\n            stack[top] = right\n            top = (top + 1)\n        if (left < len(values)):\n            stack[top] = left\n            top = (top + 1)\n    return out"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            8,
+            4,
+            9,
+            1,
+            6
+          ],
+          "target": 0
+        },
+        "expected": [
+          8,
+          4,
+          1,
+          6,
+          9
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": []
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            7
+          ],
+          "target": 0
+        },
+        "expected": [
+          7
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "maximum-depth-of-binary-tree",
+    "title": "Depth of a Complete Binary Tree",
+    "topicId": "trees",
+    "patternIds": [
+      "tree-traversal"
+    ],
+    "difficulty": "easy",
+    "description": "Return the maximum number of nodes along a root-to-leaf path in a complete binary tree encoded in level order.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "On a full row of seats filled left to right, the left aisle reaches every occupied row.",
+    "hints": [
+      "On a full row of seats filled left to right, the left aisle reaches every occupied row.",
+      "In a complete tree the leftmost path reaches the deepest occupied level.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Following only left links would be incorrect for a general sparse tree.",
+    "followUp": "Which traversal would compute depth in a sparse tree?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "In a complete tree the leftmost path reaches the deepest occupied level.",
+        "time": "O(log(n + 1))",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int node = 0;\n  int depth = 0;\n  node = 0;\n  depth = 0;\n  while ((node < static_cast<int>(values.size()))) {\n    depth = (depth + 1);\n    node = ((node * 2) + 1);\n  }\n  return depth;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int node = 0;\n    int depth = 0;\n    node = 0;\n    depth = 0;\n    while ((node < values.length)) {\n      depth = (depth + 1);\n      node = ((node * 2) + 1);\n    }\n    return depth;\n  }\n}",
+          "python": "def solve(values, target):\n    node = 0\n    depth = 0\n    while (node < len(values)):\n        depth = (depth + 1)\n        node = ((node * 2) + 1)\n    return depth"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            8,
+            4,
+            9,
+            1,
+            6
+          ],
+          "target": 0
+        },
+        "expected": 3
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            7
+          ],
+          "target": 0
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "slug": "is-max-heap",
+    "title": "Check a Max Heap",
+    "topicId": "heaps",
+    "patternIds": [
+      "heap"
+    ],
+    "difficulty": "easy",
+    "description": "Return 1 if each parent in the complete level-order tree is at least as large as each child, otherwise 0.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A tournament ranking tree places each winner above both children.",
+    "hints": [
+      "A tournament ranking tree places each winner above both children.",
+      "Every non-root entry has exactly one parent; verify one relation per child.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "A heap is only locally ordered. Siblings can be in either order.",
+    "followUp": "How can a heap expose the maximum in constant time?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Every non-root entry has exactly one parent; verify one relation per child.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int child = 0;\n  int parent = 0;\n  child = 1;\n  while ((child < static_cast<int>(values.size()))) {\n    parent = ((child - 1) / 2);\n    if ((values[parent] < values[child])) {\n      return 0;\n    }\n    child = (child + 1);\n  }\n  return 1;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int child = 0;\n    int parent = 0;\n    child = 1;\n    while ((child < values.length)) {\n      parent = ((child - 1) / 2);\n      if ((values[parent] < values[child])) {\n        return 0;\n      }\n      child = (child + 1);\n    }\n    return 1;\n  }\n}",
+          "python": "def solve(values, target):\n    child = 1\n    while (child < len(values)):\n        parent = ((child - 1) // 2)\n        if (values[parent] < values[child]):\n            return 0\n        child = (child + 1)\n    return 1"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            9,
+            5,
+            8,
+            2,
+            3
+          ],
+          "target": 0
+        },
+        "expected": 1
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            1,
+            3
+          ],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "slug": "heap-sort",
+    "title": "Heap Sort",
+    "topicId": "heaps",
+    "patternIds": [
+      "heap"
+    ],
+    "difficulty": "medium",
+    "description": "Return an ascending copy by building a max heap, then moving its maximum to the end of the remaining heap.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A tournament repeatedly moves its champion to the winners row and repairs the bracket.",
+    "hints": [
+      "A tournament repeatedly moves its champion to the winners row and repairs the bracket.",
+      "Sift each parent down to build the heap. Exchanging the root with the last live cell fixes one final output position.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Sifting into the already sorted suffix can destroy final placements.",
+    "followUp": "Why does bottom-up heap construction take linear time?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Sift each parent down to build the heap. Exchanging the root with the last live cell fixes one final output position.",
+        "time": "O(n log n)",
+        "space": "O(n) returned copy, O(1) auxiliary",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  std::vector<int> a;\n  int size = 0;\n  int start = 0;\n  int root = 0;\n  int child = 0;\n  a = values;\n  size = static_cast<int>(a.size());\n  start = (size / 2);\n  while (((start > 0) || (size > 1))) {\n    if ((start > 0)) {\n      start = (start - 1);\n      root = start;\n    } else {\n      size = (size - 1);\n      std::swap(a[0], a[size]);\n      root = 0;\n    }\n    while ((((root * 2) + 1) < size)) {\n      child = ((root * 2) + 1);\n      if ((((child + 1) < size) && (a[child] < a[(child + 1)]))) {\n        child = (child + 1);\n      }\n      if ((a[root] >= a[child])) {\n        break;\n      }\n      std::swap(a[root], a[child]);\n      root = child;\n    }\n  }\n  return a;\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int[] a = new int[0];\n    int size = 0;\n    int start = 0;\n    int root = 0;\n    int child = 0;\n    a = values.clone();\n    size = a.length;\n    start = (size / 2);\n    while (((start > 0) || (size > 1))) {\n      if ((start > 0)) {\n        start = (start - 1);\n        root = start;\n      } else {\n        size = (size - 1);\n        { int saved = a[0]; a[0] = a[size]; a[size] = saved; }\n        root = 0;\n      }\n      while ((((root * 2) + 1) < size)) {\n        child = ((root * 2) + 1);\n        if ((((child + 1) < size) && (a[child] < a[(child + 1)]))) {\n          child = (child + 1);\n        }\n        if ((a[root] >= a[child])) {\n          break;\n        }\n        { int saved = a[root]; a[root] = a[child]; a[child] = saved; }\n        root = child;\n      }\n    }\n    return a;\n  }\n}",
+          "python": "def solve(values, target):\n    a = values.copy()\n    size = len(a)\n    start = (size // 2)\n    while ((start > 0) or (size > 1)):\n        if (start > 0):\n            start = (start - 1)\n            root = start\n        else:\n            size = (size - 1)\n            a[0], a[size] = a[size], a[0]\n            root = 0\n        while (((root * 2) + 1) < size):\n            child = ((root * 2) + 1)\n            if (((child + 1) < size) and (a[child] < a[(child + 1)])):\n                child = (child + 1)\n            if (a[root] >= a[child]):\n                break\n            a[root], a[child] = a[child], a[root]\n            root = child\n    return a"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            4,
+            8,
+            1,
+            6,
+            3
+          ],
+          "target": 0
+        },
+        "expected": [
+          1,
+          3,
+          4,
+          6,
+          8
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": []
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            3,
+            3
+          ],
+          "target": 0
+        },
+        "expected": [
+          3,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "breadth-first-search",
+    "title": "Breadth-First Search",
+    "topicId": "graphs",
+    "patternIds": [
+      "breadth-first-search"
+    ],
+    "difficulty": "medium",
+    "description": "Return the breadth-first visit order from start vertex target; inspect outgoing neighbours in ascending vertex order. Supply the directed graph as a flattened row-major 0/1 adjacency matrix.",
+    "constraints": [
+      "Use a square, flattened row-major adjacency matrix of zeros and ones, with a valid starting vertex as target.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A message spreads through one circle of neighbours at a time.",
+    "hints": [
+      "A message spreads through one circle of neighbours at a time.",
+      "Mark vertices on enqueue so several paths cannot enqueue the same vertex twice.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Waiting until dequeue to mark a vertex can create duplicate frontier entries.",
+    "followUp": "How would an adjacency list change work on a sparse graph?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Mark vertices on enqueue so several paths cannot enqueue the same vertex twice.",
+        "time": "O(V²) for the matrix",
+        "space": "O(V)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  int n = 0;\n  std::vector<int> seen;\n  std::vector<int> queue;\n  int head = 0;\n  int tail = 0;\n  std::vector<int> out;\n  int i = 0;\n  int node = 0;\n  int neighbor = 0;\n  n = 1;\n  while (((n * n) < static_cast<int>(values.size()))) {\n    n = (n + 1);\n  }\n  seen = std::vector<int>(n, 0);\n  queue = std::vector<int>(n, 0);\n  queue[0] = target;\n  seen[target] = 1;\n  head = 0;\n  tail = 1;\n  while ((head < tail)) {\n    node = queue[head];\n    head = (head + 1);\n    neighbor = 0;\n    while ((neighbor < n)) {\n      if (((values[((node * n) + neighbor)] == 1) && (seen[neighbor] == 0))) {\n        seen[neighbor] = 1;\n        queue[tail] = neighbor;\n        tail = (tail + 1);\n      }\n      neighbor = (neighbor + 1);\n    }\n  }\n  out = std::vector<int>(tail, 0);\n  i = 0;\n  while ((i < tail)) {\n    out[i] = queue[i];\n    i = (i + 1);\n  }\n  return out;\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int n = 0;\n    int[] seen = new int[0];\n    int[] queue = new int[0];\n    int head = 0;\n    int tail = 0;\n    int[] out = new int[0];\n    int i = 0;\n    int node = 0;\n    int neighbor = 0;\n    n = 1;\n    while (((n * n) < values.length)) {\n      n = (n + 1);\n    }\n    seen = new int[n];\n    queue = new int[n];\n    queue[0] = target;\n    seen[target] = 1;\n    head = 0;\n    tail = 1;\n    while ((head < tail)) {\n      node = queue[head];\n      head = (head + 1);\n      neighbor = 0;\n      while ((neighbor < n)) {\n        if (((values[((node * n) + neighbor)] == 1) && (seen[neighbor] == 0))) {\n          seen[neighbor] = 1;\n          queue[tail] = neighbor;\n          tail = (tail + 1);\n        }\n        neighbor = (neighbor + 1);\n      }\n    }\n    out = new int[tail];\n    i = 0;\n    while ((i < tail)) {\n      out[i] = queue[i];\n      i = (i + 1);\n    }\n    return out;\n  }\n}",
+          "python": "def solve(values, target):\n    n = 1\n    while ((n * n) < len(values)):\n        n = (n + 1)\n    seen = [0] * (n)\n    queue = [0] * (n)\n    queue[0] = target\n    seen[target] = 1\n    head = 0\n    tail = 1\n    while (head < tail):\n        node = queue[head]\n        head = (head + 1)\n        neighbor = 0\n        while (neighbor < n):\n            if ((values[((node * n) + neighbor)] == 1) and (seen[neighbor] == 0)):\n                seen[neighbor] = 1\n                queue[tail] = neighbor\n                tail = (tail + 1)\n            neighbor = (neighbor + 1)\n    out = [0] * (tail)\n    i = 0\n    while (i < tail):\n        out[i] = queue[i]\n        i = (i + 1)\n    return out"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "target": 0
+        },
+        "expected": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            0
+          ],
+          "target": 0
+        },
+        "expected": [
+          0
+        ]
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "target": 1
+        },
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "count-reachable-nodes",
+    "title": "Count Reachable Nodes",
+    "topicId": "graphs",
+    "patternIds": [
+      "breadth-first-search"
+    ],
+    "difficulty": "medium",
+    "description": "Count distinct vertices reachable from target, including the start. Supply the directed graph as a flattened row-major 0/1 adjacency matrix.",
+    "constraints": [
+      "Use a square, flattened row-major adjacency matrix of zeros and ones, with a valid starting vertex as target.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A message spreads through one circle of neighbours at a time.",
+    "hints": [
+      "A message spreads through one circle of neighbours at a time.",
+      "Mark vertices on enqueue so several paths cannot enqueue the same vertex twice.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Waiting until dequeue to mark a vertex can create duplicate frontier entries.",
+    "followUp": "How would an adjacency list change work on a sparse graph?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Mark vertices on enqueue so several paths cannot enqueue the same vertex twice.",
+        "time": "O(V²) for the matrix",
+        "space": "O(V)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int n = 0;\n  std::vector<int> seen;\n  std::vector<int> queue;\n  int head = 0;\n  int tail = 0;\n  int node = 0;\n  int neighbor = 0;\n  n = 1;\n  while (((n * n) < static_cast<int>(values.size()))) {\n    n = (n + 1);\n  }\n  seen = std::vector<int>(n, 0);\n  queue = std::vector<int>(n, 0);\n  queue[0] = target;\n  seen[target] = 1;\n  head = 0;\n  tail = 1;\n  while ((head < tail)) {\n    node = queue[head];\n    head = (head + 1);\n    neighbor = 0;\n    while ((neighbor < n)) {\n      if (((values[((node * n) + neighbor)] == 1) && (seen[neighbor] == 0))) {\n        seen[neighbor] = 1;\n        queue[tail] = neighbor;\n        tail = (tail + 1);\n      }\n      neighbor = (neighbor + 1);\n    }\n  }\n  return tail;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int n = 0;\n    int[] seen = new int[0];\n    int[] queue = new int[0];\n    int head = 0;\n    int tail = 0;\n    int node = 0;\n    int neighbor = 0;\n    n = 1;\n    while (((n * n) < values.length)) {\n      n = (n + 1);\n    }\n    seen = new int[n];\n    queue = new int[n];\n    queue[0] = target;\n    seen[target] = 1;\n    head = 0;\n    tail = 1;\n    while ((head < tail)) {\n      node = queue[head];\n      head = (head + 1);\n      neighbor = 0;\n      while ((neighbor < n)) {\n        if (((values[((node * n) + neighbor)] == 1) && (seen[neighbor] == 0))) {\n          seen[neighbor] = 1;\n          queue[tail] = neighbor;\n          tail = (tail + 1);\n        }\n        neighbor = (neighbor + 1);\n      }\n    }\n    return tail;\n  }\n}",
+          "python": "def solve(values, target):\n    n = 1\n    while ((n * n) < len(values)):\n        n = (n + 1)\n    seen = [0] * (n)\n    queue = [0] * (n)\n    queue[0] = target\n    seen[target] = 1\n    head = 0\n    tail = 1\n    while (head < tail):\n        node = queue[head]\n        head = (head + 1)\n        neighbor = 0\n        while (neighbor < n):\n            if ((values[((node * n) + neighbor)] == 1) and (seen[neighbor] == 0)):\n                seen[neighbor] = 1\n                queue[tail] = neighbor\n                tail = (tail + 1)\n            neighbor = (neighbor + 1)\n    return tail"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "target": 0
+        },
+        "expected": 3
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            0
+          ],
+          "target": 0
+        },
+        "expected": 1
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "target": 1
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "slug": "climbing-stairs",
+    "title": "Climbing Stairs",
+    "topicId": "dynamic-programming",
+    "patternIds": [
+      "dynamic-programming"
+    ],
+    "difficulty": "easy",
+    "description": "Count ordered ways to reach target steps using hops of one or two. The values list is unused.",
+    "constraints": [
+      "Target must be between 0 and 20.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Every route to a landing arrives from one of the previous two landings.",
+    "hints": [
+      "Every route to a landing arrives from one of the previous two landings.",
+      "Each route ends with either a one-step or two-step hop. Add the counts at those two predecessor stairs.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "The starting floor has one empty route, so ways(0) equals one.",
+    "followUp": "What if three-step hops were allowed?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Each route ends with either a one-step or two-step hop. Add the counts at those two predecessor stairs.",
+        "time": "O(t)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int prev = 0;\n  int curr = 0;\n  int i = 0;\n  int ways = 0;\n  prev = 1;\n  curr = 1;\n  i = 2;\n  while ((i <= target)) {\n    ways = (prev + curr);\n    prev = curr;\n    curr = ways;\n    i = (i + 1);\n  }\n  return curr;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int prev = 0;\n    int curr = 0;\n    int i = 0;\n    int ways = 0;\n    prev = 1;\n    curr = 1;\n    i = 2;\n    while ((i <= target)) {\n      ways = (prev + curr);\n      prev = curr;\n      curr = ways;\n      i = (i + 1);\n    }\n    return curr;\n  }\n}",
+          "python": "def solve(values, target):\n    prev = 1\n    curr = 1\n    i = 2\n    while (i <= target):\n        ways = (prev + curr)\n        prev = curr\n        curr = ways\n        i = (i + 1)\n    return curr"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [],
+          "target": 6
+        },
+        "expected": 13
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 1
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [],
+          "target": 1
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "slug": "house-robber",
+    "title": "House Robber",
+    "topicId": "dynamic-programming",
+    "patternIds": [
+      "dynamic-programming"
+    ],
+    "difficulty": "medium",
+    "description": "Choose nonadjacent entries of nonnegative value to maximize the total. Return the best sum.",
+    "constraints": [
+      "Each value must be nonnegative.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Pick paid workshops on nonconsecutive days and compare attending today with keeping yesterday’s schedule.",
+    "hints": [
+      "Pick paid workshops on nonconsecutive days and compare attending today with keeping yesterday’s schedule.",
+      "Compare skipping today with taking today plus the best available two positions back.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Taking every locally larger value can block a better pair later.",
+    "followUp": "How would a circular street change the first and last choices?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Compare skipping today with taking today plus the best available two positions back.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int twoBack = 0;\n  int best = 0;\n  int i = 0;\n  int nextBest = 0;\n  twoBack = 0;\n  best = 0;\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    nextBest = std::max(best, (twoBack + values[i]));\n    twoBack = best;\n    best = nextBest;\n    i = (i + 1);\n  }\n  return best;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int twoBack = 0;\n    int best = 0;\n    int i = 0;\n    int nextBest = 0;\n    twoBack = 0;\n    best = 0;\n    i = 0;\n    while ((i < values.length)) {\n      nextBest = Math.max(best, (twoBack + values[i]));\n      twoBack = best;\n      best = nextBest;\n      i = (i + 1);\n    }\n    return best;\n  }\n}",
+          "python": "def solve(values, target):\n    twoBack = 0\n    best = 0\n    i = 0\n    while (i < len(values)):\n        nextBest = max(best, (twoBack + values[i]))\n        twoBack = best\n        best = nextBest\n        i = (i + 1)\n    return best"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            4,
+            1,
+            2,
+            7,
+            5
+          ],
+          "target": 0
+        },
+        "expected": 11
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            3
+          ],
+          "target": 0
+        },
+        "expected": 3
+      }
+    ]
+  },
+  {
+    "slug": "coin-change",
+    "title": "Coin Change",
+    "topicId": "dynamic-programming",
+    "patternIds": [
+      "dynamic-programming"
+    ],
+    "difficulty": "medium",
+    "description": "Use unlimited copies of the positive denominations to make target exactly. Return the minimum number of coins, or -1.",
+    "constraints": [
+      "Each value must be positive.",
+      "Target must be between 0 and 100.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A change counter writes the minimum number of coins on each smaller amount card.",
+    "hints": [
+      "A change counter writes the minimum number of coins on each smaller amount card.",
+      "For each amount, try each possible last coin and keep the shortest reachable predecessor plus one.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Taking the largest coin first can fail for denominations such as 1, 3, 4.",
+    "followUp": "How would you reconstruct the actual chosen coins?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "For each amount, try each possible last coin and keep the shortest reachable predecessor plus one.",
+        "time": "O(t × n)",
+        "space": "O(t)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  std::vector<int> dp;\n  int amount = 0;\n  int i = 0;\n  int coin = 0;\n  dp = std::vector<int>((target + 1), 0);\n  amount = 1;\n  while ((amount <= target)) {\n    dp[amount] = (target + 1);\n    i = 0;\n    while ((i < static_cast<int>(values.size()))) {\n      coin = values[i];\n      if ((coin <= amount)) {\n        dp[amount] = std::min(dp[amount], (dp[(amount - coin)] + 1));\n      }\n      i = (i + 1);\n    }\n    amount = (amount + 1);\n  }\n  if ((dp[target] > target)) {\n    return -1;\n  }\n  return dp[target];\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int[] dp = new int[0];\n    int amount = 0;\n    int i = 0;\n    int coin = 0;\n    dp = new int[(target + 1)];\n    amount = 1;\n    while ((amount <= target)) {\n      dp[amount] = (target + 1);\n      i = 0;\n      while ((i < values.length)) {\n        coin = values[i];\n        if ((coin <= amount)) {\n          dp[amount] = Math.min(dp[amount], (dp[(amount - coin)] + 1));\n        }\n        i = (i + 1);\n      }\n      amount = (amount + 1);\n    }\n    if ((dp[target] > target)) {\n      return -1;\n    }\n    return dp[target];\n  }\n}",
+          "python": "def solve(values, target):\n    dp = [0] * ((target + 1))\n    amount = 1\n    while (amount <= target):\n        dp[amount] = (target + 1)\n        i = 0\n        while (i < len(values)):\n            coin = values[i]\n            if (coin <= amount):\n                dp[amount] = min(dp[amount], (dp[(amount - coin)] + 1))\n            i = (i + 1)\n        amount = (amount + 1)\n    if (dp[target] > target):\n        return -1\n    return dp[target]"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            1,
+            3,
+            4
+          ],
+          "target": 6
+        },
+        "expected": 2
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            4,
+            6
+          ],
+          "target": 5
+        },
+        "expected": -1
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 3",
+        "input": {
+          "values": [],
+          "target": 3
+        },
+        "expected": -1
+      }
+    ]
+  },
+  {
+    "slug": "unique-paths",
+    "title": "Unique Paths Around Blocks",
+    "topicId": "dynamic-programming",
+    "patternIds": [
+      "grid-dp"
+    ],
+    "difficulty": "medium",
+    "description": "Count paths from top left to bottom right through a rectangular grid. Move only right or down. A one marks a blocked cell, zero marks an open cell. Target gives column count.",
+    "constraints": [
+      "Values must be 0 or 1.",
+      "Target is the number of columns. Values must fill a nonempty rectangle.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Count routes between city intersections while avoiding closed streets.",
+    "hints": [
+      "Count routes between city intersections while avoiding closed streets.",
+      "Each open cell can be reached from its upper and left neighbours; add those counts.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "A blocked starting cell must contribute zero ways.",
+    "followUp": "How could you keep only one row of counts?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Each open cell can be reached from its upper and left neighbours; add those counts.",
+        "time": "O(rows × columns)",
+        "space": "O(rows × columns)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  std::vector<int> dp;\n  int i = 0;\n  dp = std::vector<int>(static_cast<int>(values.size()), 0);\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    if ((values[i] == 0)) {\n      if ((i == 0)) {\n        dp[i] = 1;\n      } else {\n        if ((i >= target)) {\n          dp[i] = dp[(i - target)];\n        }\n        if (((i % target) > 0)) {\n          dp[i] = (dp[i] + dp[(i - 1)]);\n        }\n      }\n    }\n    i = (i + 1);\n  }\n  return dp[(static_cast<int>(values.size()) - 1)];\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int[] dp = new int[0];\n    int i = 0;\n    dp = new int[values.length];\n    i = 0;\n    while ((i < values.length)) {\n      if ((values[i] == 0)) {\n        if ((i == 0)) {\n          dp[i] = 1;\n        } else {\n          if ((i >= target)) {\n            dp[i] = dp[(i - target)];\n          }\n          if (((i % target) > 0)) {\n            dp[i] = (dp[i] + dp[(i - 1)]);\n          }\n        }\n      }\n      i = (i + 1);\n    }\n    return dp[(values.length - 1)];\n  }\n}",
+          "python": "def solve(values, target):\n    dp = [0] * (len(values))\n    i = 0\n    while (i < len(values)):\n        if (values[i] == 0):\n            if (i == 0):\n                dp[i] = 1\n            else:\n                if (i >= target):\n                    dp[i] = dp[(i - target)]\n                if ((i % target) > 0):\n                    dp[i] = (dp[i] + dp[(i - 1)])\n        i = (i + 1)\n    return dp[(len(values) - 1)]"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "target": 3
+        },
+        "expected": 2
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            1
+          ],
+          "target": 1
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            0
+          ],
+          "target": 1
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "slug": "minimum-path-sum",
+    "title": "Minimum Path Sum",
+    "topicId": "dynamic-programming",
+    "patternIds": [
+      "grid-dp"
+    ],
+    "difficulty": "medium",
+    "description": "Travel from the top-left to bottom-right grid cell using right or down moves. The total includes both endpoints. Return the smallest path total. Target gives column count.",
+    "constraints": [
+      "Target is the number of columns. Values must fill a nonempty rectangle.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A courier records the cheapest arrival fare at every junction before moving onward.",
+    "hints": [
+      "A courier records the cheapest arrival fare at every junction before moving onward.",
+      "Accumulate the cheapest known predecessor at every cell; the first row and column each have only one predecessor.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "The start cell must be counted exactly once.",
+    "followUp": "How could a second table recover the chosen route?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Accumulate the cheapest known predecessor at every cell; the first row and column each have only one predecessor.",
+        "time": "O(rows × columns)",
+        "space": "O(rows × columns)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  std::vector<int> dp;\n  int i = 0;\n  dp = values;\n  i = 1;\n  while ((i < static_cast<int>(dp.size()))) {\n    if ((i < target)) {\n      dp[i] = (dp[i] + dp[(i - 1)]);\n    } else {\n      if (((i % target) == 0)) {\n        dp[i] = (dp[i] + dp[(i - target)]);\n      } else {\n        dp[i] = (dp[i] + std::min(dp[(i - target)], dp[(i - 1)]));\n      }\n    }\n    i = (i + 1);\n  }\n  return dp[(static_cast<int>(dp.size()) - 1)];\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int[] dp = new int[0];\n    int i = 0;\n    dp = values.clone();\n    i = 1;\n    while ((i < dp.length)) {\n      if ((i < target)) {\n        dp[i] = (dp[i] + dp[(i - 1)]);\n      } else {\n        if (((i % target) == 0)) {\n          dp[i] = (dp[i] + dp[(i - target)]);\n        } else {\n          dp[i] = (dp[i] + Math.min(dp[(i - target)], dp[(i - 1)]));\n        }\n      }\n      i = (i + 1);\n    }\n    return dp[(dp.length - 1)];\n  }\n}",
+          "python": "def solve(values, target):\n    dp = values.copy()\n    i = 1\n    while (i < len(dp)):\n        if (i < target):\n            dp[i] = (dp[i] + dp[(i - 1)])\n        else:\n            if ((i % target) == 0):\n                dp[i] = (dp[i] + dp[(i - target)])\n            else:\n                dp[i] = (dp[i] + min(dp[(i - target)], dp[(i - 1)]))\n        i = (i + 1)\n    return dp[(len(dp) - 1)]"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            1,
+            4,
+            1,
+            2,
+            1,
+            3
+          ],
+          "target": 3
+        },
+        "expected": 7
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            -4
+          ],
+          "target": 1
+        },
+        "expected": -4
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            2,
+            3
+          ],
+          "target": 1
+        },
+        "expected": 5
+      }
+    ]
+  },
+  {
+    "slug": "jump-game",
+    "title": "Jump Game",
+    "topicId": "greedy-and-intervals",
+    "patternIds": [
+      "greedy"
+    ],
+    "difficulty": "easy",
+    "description": "Each entry is the maximum forward jump from that position. Return 1 if the final position is reachable from index zero, otherwise 0.",
+    "constraints": [
+      "Supply at least one value.",
+      "Each value must be nonnegative.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A row of relay stations extends a signal only when the signal reaches the station.",
+    "hints": [
+      "A row of relay stations extends a signal only when the signal reaches the station.",
+      "Keep the furthest position reachable by processing only positions already reachable.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Using jump lengths from unreachable positions can create a fictitious route.",
+    "followUp": "Why is every index up to the frontier reachable?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Keep the furthest position reachable by processing only positions already reachable.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int reach = 0;\n  int i = 0;\n  reach = 0;\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    if ((i > reach)) {\n      return 0;\n    }\n    reach = std::max(reach, (i + values[i]));\n    i = (i + 1);\n  }\n  return 1;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int reach = 0;\n    int i = 0;\n    reach = 0;\n    i = 0;\n    while ((i < values.length)) {\n      if ((i > reach)) {\n        return 0;\n      }\n      reach = Math.max(reach, (i + values[i]));\n      i = (i + 1);\n    }\n    return 1;\n  }\n}",
+          "python": "def solve(values, target):\n    reach = 0\n    i = 0\n    while (i < len(values)):\n        if (i > reach):\n            return 0\n        reach = max(reach, (i + values[i]))\n        i = (i + 1)\n    return 1"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            2,
+            3,
+            1,
+            1,
+            4
+          ],
+          "target": 0
+        },
+        "expected": 1
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            1,
+            0,
+            2
+          ],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            0
+          ],
+          "target": 0
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "slug": "minimum-jumps",
+    "title": "Minimum Forward Jumps",
+    "topicId": "greedy-and-intervals",
+    "patternIds": [
+      "greedy"
+    ],
+    "difficulty": "medium",
+    "description": "Find the fewest jumps from the first index to the last, or -1 if unreachable. Each number is the maximum jump length from that index.",
+    "constraints": [
+      "Supply at least one value.",
+      "Each value must be nonnegative.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Count bus transfers by expanding all stops available with the same number of tickets.",
+    "hints": [
+      "Count bus transfers by expanding all stops available with the same number of tickets.",
+      "All positions in a current frontier use the same jump budget. Accumulate the next frontier before spending another jump.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Incrementing jumps for every position counts alternatives as extra trips.",
+    "followUp": "Can you reconstruct an actual shortest sequence of jumps?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "All positions in a current frontier use the same jump budget. Accumulate the next frontier before spending another jump.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int reach = 0;\n  int end = 0;\n  int jumps = 0;\n  int i = 0;\n  reach = 0;\n  end = 0;\n  jumps = 0;\n  i = 0;\n  while ((i < (static_cast<int>(values.size()) - 1))) {\n    reach = std::max(reach, (i + values[i]));\n    if ((i == end)) {\n      if ((reach == end)) {\n        return -1;\n      }\n      end = reach;\n      jumps = (jumps + 1);\n    }\n    i = (i + 1);\n  }\n  return jumps;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int reach = 0;\n    int end = 0;\n    int jumps = 0;\n    int i = 0;\n    reach = 0;\n    end = 0;\n    jumps = 0;\n    i = 0;\n    while ((i < (values.length - 1))) {\n      reach = Math.max(reach, (i + values[i]));\n      if ((i == end)) {\n        if ((reach == end)) {\n          return -1;\n        }\n        end = reach;\n        jumps = (jumps + 1);\n      }\n      i = (i + 1);\n    }\n    return jumps;\n  }\n}",
+          "python": "def solve(values, target):\n    reach = 0\n    end = 0\n    jumps = 0\n    i = 0\n    while (i < (len(values) - 1)):\n        reach = max(reach, (i + values[i]))\n        if (i == end):\n            if (reach == end):\n                return -1\n            end = reach\n            jumps = (jumps + 1)\n        i = (i + 1)\n    return jumps"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            2,
+            3,
+            1,
+            1,
+            4
+          ],
+          "target": 0
+        },
+        "expected": 2
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            0,
+            2
+          ],
+          "target": 0
+        },
+        "expected": -1
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            0
+          ],
+          "target": 0
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "slug": "single-number",
+    "title": "Single Number",
+    "topicId": "bit-manipulation",
+    "patternIds": [
+      "xor-cancellation"
+    ],
+    "difficulty": "easy",
+    "description": "Every input value occurs twice except one value that occurs once. Return the unpaired value.",
+    "constraints": [
+      "Exactly one value occurs once and every other value occurs twice.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Paired light switches toggle a lamp twice, restoring its original state.",
+    "hints": [
+      "Paired light switches toggle a lamp twice, restoring its original state.",
+      "Equal numbers cancel under XOR. Rearranging pairs cannot change the result.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "This cancellation does not isolate a single value when repeated numbers occur three times.",
+    "followUp": "How would you isolate two different unpaired numbers?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Equal numbers cancel under XOR. Rearranging pairs cannot change the result.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int result = 0;\n  int i = 0;\n  result = 0;\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    result = (result ^ values[i]);\n    i = (i + 1);\n  }\n  return result;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int result = 0;\n    int i = 0;\n    result = 0;\n    i = 0;\n    while ((i < values.length)) {\n      result = (result ^ values[i]);\n      i = (i + 1);\n    }\n    return result;\n  }\n}",
+          "python": "def solve(values, target):\n    result = 0\n    i = 0\n    while (i < len(values)):\n        result = (result ^ values[i])\n        i = (i + 1)\n    return result"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            6,
+            2,
+            6,
+            -3,
+            2
+          ],
+          "target": 0
+        },
+        "expected": -3
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [
+            0
+          ],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            -1,
+            0,
+            0
+          ],
+          "target": 0
+        },
+        "expected": -1
+      }
+    ]
+  },
+  {
+    "slug": "missing-number",
+    "title": "Missing Number",
+    "topicId": "bit-manipulation",
+    "patternIds": [
+      "xor-cancellation"
+    ],
+    "difficulty": "easy",
+    "description": "The input has distinct values from zero through n inclusive, with one number missing. Identify that number.",
+    "constraints": [
+      "Use distinct values from 0 through n inclusive.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Pair expected roll-call cards with attended cards; the unmatched card remains.",
+    "hints": [
+      "Pair expected roll-call cards with attended cards; the unmatched card remains.",
+      "XOR every expected number and every supplied number. All values present in both groups cancel.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "The inclusive upper endpoint n also belongs to the expected set.",
+    "followUp": "Would an arithmetic sum also work for this bounded input?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "XOR every expected number and every supplied number. All values present in both groups cancel.",
+        "time": "O(n)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int result = 0;\n  int i = 0;\n  result = static_cast<int>(values.size());\n  i = 0;\n  while ((i < static_cast<int>(values.size()))) {\n    result = ((result ^ i) ^ values[i]);\n    i = (i + 1);\n  }\n  return result;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int result = 0;\n    int i = 0;\n    result = values.length;\n    i = 0;\n    while ((i < values.length)) {\n      result = ((result ^ i) ^ values[i]);\n      i = (i + 1);\n    }\n    return result;\n  }\n}",
+          "python": "def solve(values, target):\n    result = len(values)\n    i = 0\n    while (i < len(values)):\n        result = ((result ^ i) ^ values[i])\n        i = (i + 1)\n    return result"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [
+            3,
+            0,
+            1
+          ],
+          "target": 0
+        },
+        "expected": 2
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [
+            0
+          ],
+          "target": 0
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "slug": "number-of-1-bits",
+    "title": "Number of Set Bits",
+    "topicId": "bit-manipulation",
+    "patternIds": [
+      "bit-masking"
+    ],
+    "difficulty": "easy",
+    "description": "Count the set bits in the binary form of nonnegative target. The values list is unused.",
+    "constraints": [
+      "Target must be nonnegative.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Remove one lit lamp at a time and count the removals.",
+    "hints": [
+      "Remove one lit lamp at a time and count the removals.",
+      "Masking a positive number with one less clears its lowest set bit.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "The routine assumes a nonnegative integer with a finite unsigned representation.",
+    "followUp": "Why does subtracting one change all low bits up to the first one?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Masking a positive number with one less clears its lowest set bit.",
+        "time": "O(number of set bits)",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int bits = 0;\n  int count = 0;\n  bits = target;\n  count = 0;\n  while ((bits > 0)) {\n    bits = (bits & (bits - 1));\n    count = (count + 1);\n  }\n  return count;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int bits = 0;\n    int count = 0;\n    bits = target;\n    count = 0;\n    while ((bits > 0)) {\n      bits = (bits & (bits - 1));\n      count = (count + 1);\n    }\n    return count;\n  }\n}",
+          "python": "def solve(values, target):\n    bits = target\n    count = 0\n    while (bits > 0):\n        bits = (bits & (bits - 1))\n        count = (count + 1)\n    return count"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [],
+          "target": 13
+        },
+        "expected": 3
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [],
+          "target": 512
+        },
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "slug": "power-of-two",
+    "title": "Power of Two",
+    "topicId": "bit-manipulation",
+    "patternIds": [
+      "bit-masking"
+    ],
+    "difficulty": "easy",
+    "description": "Return 1 if target is two raised to a nonnegative integer power and 0 otherwise. The values list is unused.",
+    "constraints": [
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "A binary shelf label for a power of two lights exactly one switch.",
+    "hints": [
+      "A binary shelf label for a power of two lights exactly one switch.",
+      "A positive power of two has exactly one set bit. Clearing that bit produces zero.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Zero also satisfies the mask equality and needs a separate positivity test.",
+    "followUp": "How would you recognize a power of four?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "A positive power of two has exactly one set bit. Clearing that bit produces zero.",
+        "time": "O(1) for fixed-width inputs",
+        "space": "O(1)",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nint solve(const std::vector<int>& values, int target) {\n  int remaining = 0;\n  if ((target <= 0)) {\n    return 0;\n  }\n  remaining = (target & (target - 1));\n  if ((remaining == 0)) {\n    return 1;\n  }\n  return 0;\n}",
+          "java": "class Solution {\n  static int solve(int[] values, int target) {\n    int remaining = 0;\n    if ((target <= 0)) {\n      return 0;\n    }\n    remaining = (target & (target - 1));\n    if ((remaining == 0)) {\n      return 1;\n    }\n    return 0;\n  }\n}",
+          "python": "def solve(values, target):\n    if (target <= 0):\n        return 0\n    remaining = (target & (target - 1))\n    if (remaining == 0):\n        return 1\n    return 0"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [],
+          "target": 16
+        },
+        "expected": 1
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [],
+          "target": 12
+        },
+        "expected": 0
+      },
+      {
+        "label": "Edge case 3",
+        "input": {
+          "values": [],
+          "target": -2
+        },
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "slug": "counting-bits",
+    "title": "Counting Bits",
+    "topicId": "bit-manipulation",
+    "patternIds": [
+      "bit-masking"
+    ],
+    "difficulty": "easy",
+    "description": "Return the count of set bits for every integer from zero through target. The input values list is unused.",
+    "constraints": [
+      "Target must be between 0 and 100.",
+      "Use at most 32 integers. Each numeric input is between -1000 and 1000."
+    ],
+    "analogy": "Reuse the tally for a shorter string of switches, then inspect just the new switch.",
+    "hints": [
+      "Reuse the tally for a shorter string of switches, then inspect just the new switch.",
+      "Removing the last binary digit halves the number. Add the discarded low bit to the known count for that smaller number.",
+      "Step through the worked example and inspect the highlighted variables before each update."
+    ],
+    "mistake": "Using the count of i minus one without accounting for carries fails at powers of two.",
+    "followUp": "How would you process a very large target in blocks?",
+    "approaches": [
+      {
+        "id": "optimal",
+        "title": "Guided solution",
+        "intuition": "Removing the last binary digit halves the number. Add the discarded low bit to the known count for that smaller number.",
+        "time": "O(t)",
+        "space": "O(t) output",
+        "code": {
+          "cpp": "#include <algorithm>\n#include <cstdlib>\n#include <vector>\n\nstd::vector<int> solve(const std::vector<int>& values, int target) {\n  std::vector<int> dp;\n  int i = 0;\n  dp = std::vector<int>((target + 1), 0);\n  i = 1;\n  while ((i <= target)) {\n    dp[i] = (dp[(i / 2)] + (i & 1));\n    i = (i + 1);\n  }\n  return dp;\n}",
+          "java": "class Solution {\n  static int[] solve(int[] values, int target) {\n    int[] dp = new int[0];\n    int i = 0;\n    dp = new int[(target + 1)];\n    i = 1;\n    while ((i <= target)) {\n      dp[i] = (dp[(i / 2)] + (i & 1));\n      i = (i + 1);\n    }\n    return dp;\n  }\n}",
+          "python": "def solve(values, target):\n    dp = [0] * ((target + 1))\n    i = 1\n    while (i <= target):\n        dp[i] = (dp[(i // 2)] + (i & 1))\n        i = (i + 1)\n    return dp"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "label": "Worked example",
+        "input": {
+          "values": [],
+          "target": 5
+        },
+        "expected": [
+          0,
+          1,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "label": "Edge case 1",
+        "input": {
+          "values": [],
+          "target": 0
+        },
+        "expected": [
+          0
+        ]
+      },
+      {
+        "label": "Edge case 2",
+        "input": {
+          "values": [],
+          "target": 1
+        },
+        "expected": [
+          0,
+          1
+        ]
+      }
+    ]
+  }
+]

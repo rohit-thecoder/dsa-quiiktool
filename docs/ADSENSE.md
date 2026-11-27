@@ -1,0 +1,6 @@
+# AdSense activation
+Use .env.example as the field list. Set NEXT_PUBLIC_ADS_ENABLED=true and supply the complete ca-pub publisher ID and actual display-unit slot numbers in the appropriate environment. Rebuild after changing public environment variables. The banner is on the homepage and editorial placements appear after reading content. The reusable sidebar unit requires a layout with room for a separate rail.
+
+In the approved AdSense site settings enable Auto ads and select the vignette overlay. Google controls eligibility and timing. Exclude the homepage live demo, /games/, /problem/, /visualizers/, /learn, /interview-prep and /daily-challenge from Auto ads to protect interactive sessions. Use page exclusions in the publisher account. [Auto ads settings](https://support.google.com/adsense/answer/9305577)
+
+Configure the applicable certified consent message in the publisher account before enabling ads. Verify the seller entry at /ads.txt and the parent-domain ads.txt setup in AdSense. IDs alone cannot guarantee approval, fill or revenue. [Consent requirements](https://support.google.com/adsense/answer/13554020) · [Ads.txt guidance](https://support.google.com/adsense/answer/9785052)

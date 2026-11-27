@@ -1,0 +1,1 @@
+export default function Missing(){return <div className="page-head"><p className="eyebrow">404</p><h1>Page not found</h1><p>Explore the curriculum to find the lesson you need.</p><a href="/topics" className="btn primary">Browse topics</a></div>}
